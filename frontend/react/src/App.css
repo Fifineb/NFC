@@ -1,0 +1,11 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  color: #f7f3f3;
+}
