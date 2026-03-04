@@ -7,6 +7,15 @@ function App() {
     <div>
       <h1>Gestion de Stock</h1>
       <p className="app-title">Smart Stock Management</p>
+      <p><ul>
+        Acceuil         
+        Service         
+        Société          
+        Prix          
+        Contact  
+        
+      </ul>
+      </p>
     </div>
   );
 }
