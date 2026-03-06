@@ -1,0 +1,38 @@
+
+:root {
+  /* Couleurs Bagagas */
+  --primary-color: #023d7c;    /* Bleu foncé professionnel */
+  --secondary-color: #e67e22;   /* Orange pour les alertes */
+  --success-color: #27ae60;     /* Vert pour les entrées */
+  --danger-color: #e74c3c;      /* Rouge pour les sorties */
+  --background-light: #ecf0f1;
+  
+  /* Polices */
+  --font-main: 'Poppins', sans-serif;
+  --font-size-small: 0.875rem;
+  --font-size-normal: 1rem;
+  --font-size-large: 1.25rem;
+  
+  /* Espacements */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+}
+
+
+/*:root{
+  --primary-color:#023d7c;
+  --secondary-color:#376494;
+  
+  .h1 {
+    color : #FFD200;
+    color : #023d7c;
+    color : #FAF9F7;
+}
+
+h1:hover{
+    color : #376494;
+    color : #fbe16b;
+}*/
+
