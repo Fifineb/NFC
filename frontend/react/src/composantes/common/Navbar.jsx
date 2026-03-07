@@ -1,4 +1,4 @@
-import logoapp from "../../assets/images/logoapp.png"
+import logoapp1 from "../../assets/images/logoapp.png"
 
 function Navbar(){
   return(
@@ -6,7 +6,7 @@ function Navbar(){
     <nav className="navbar">
 
       <div className="logo">
-        <img src={logoapp} alt="SmartStock"/>
+        <img src={logoapp1} alt="SmartStock"/>
         <span>Smart Stock</span>
       </div>
 

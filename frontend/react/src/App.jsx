@@ -4,10 +4,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 */
-import HomePage from "./Pages/public/Home"
+import Home from "./Pages/public/Home"
 
 function App() {
-  return <HomePage/>
+  return <Home/>
 }
 
 
