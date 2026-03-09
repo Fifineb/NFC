@@ -1,34 +1,15 @@
-/*
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-*/
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./Pages/public/Home"
+import "./assets/styles/global.css"
 
-function App() {
-  return <Home/>
-}
-
-
-export default App
-/*
 function App() {
   return (
-    <div>
-      <h1>Gestion de Stock</h1>
-      <p className="app-title">Smart Stock Management</p>
-      <p><ul>
-        Acceuil         
-        Service         
-        Société          
-        Prix          
-        Contact  
-        
-      </ul>
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;*/
+export default App;
