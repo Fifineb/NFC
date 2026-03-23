@@ -177,6 +177,80 @@ span {
   font-weight: 300;
 }
 
+/*       Société Section       */
+.societe {
+  padding: 80px 50px;
+  background-color: #f8f9fa;
+}
+
+.societe-title {
+  text-align: center;
+  font-size: 36px;
+  color: #0f4c81;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.societe-title:after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #0f4c81;
+  border-radius: 2px;
+}
+
+.historique {
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.historique-text {
+  width: 50%;
+}
+/*
+.historique-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+.historique-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.historique-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(15, 76, 129, 0.15);
+}
+
+.societe-historique h3 {
+  font-size: 20px;
+  color: #0f4c81;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+*/
+
+
+
+
+
+
+
 @media (max-width: 1024px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
