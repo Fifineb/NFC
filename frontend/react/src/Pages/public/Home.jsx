@@ -1,5 +1,7 @@
-import images from "../../assets/images/Accueil.jpeg"
-import Navbar from "../../composantes/common/NavBar"
+import Accueil from "../../assets/images/Accueil.jpeg";
+import entrer from "../../assets/images/entrer.jpg";
+import Navbar from "../../composantes/common/NavBar";
+import Footer from "../../composantes/common/Footer"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBolt, faBoxes, faChartBar, faBell } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,12 +21,12 @@ function Home() {
           </p>
         </div>
         <div className="home-image">
-          <img src={images} alt="stock management"/>
+          <img src={Accueil} alt="stock management"/>
         </div>
       </section>
       
       {/* Services Section */}
-      <section id="services" className="services">  
+        <section id="services" className="services">
         <h2 className="services-title">Nos Services</h2>
         
         <div className="services-grid">
@@ -77,71 +79,104 @@ function Home() {
       <section id="societe" className="societe">
         <h2 className="societe-title">Notre Société</h2>
         <div className="historique">
+         <div className="description"> 
+          <div className="description-image">
+           <img src={entrer} alt="entreprise"/>
+          </div>
+
           <div className="historique-text" >
+            <h4>Description de l'entreprise : </h4> 
             <p>
-             <h4>Description de l'entreprise : </h4> 
              BAG (Batna Aluminium Gaz) est une entreprise industrielle algérienne spécialisée dans la fabrication et la commercialisation de récipients à pression, notamment les bouteilles de gaz GPL utilisées dans les secteurs domestiques, industriels et automobiles.
              Créée en 1972, l’entreprise joue aujourd’hui un rôle essentiel dans le marché énergétique algérien, en assurant la production d’équipements fiables et conformes aux normes de qualité et de sécurité.
              BAG est certifiée ISO 9001 (Système de Management de la Qualité), ce qui garantit l’amélioration continue de ses processus de production et la satisfaction de ses clients.
              L’entreprise possède plusieurs unités de production en Algérie, notamment à Alger, Batna et Mascara, et emploie des centaines de collaborateurs spécialisés dans la fabrication industrielle.
             </p>
           </div>
-          <div className="historique-grid">
-            {/*mission */}
-            <h3>Notre Mission</h3>
-           <div className="historique-card">
-            <div className="historique-icon">
-            </div>
-            
-            <p>
-             <h4>Mission :</h4> 
-              Produire des bouteilles de gaz et équipements sous pression fiables et sécurisés
-              Répondre aux besoins énergétiques du marché algérien
-              Garantir une qualité élevée et une conformité aux normes internationales
-              Assurer la sécurité des utilisateurs et la durabilité des produits
+        </div>
 
-             <h4>Vision :</h4>
-              Renforcer sa position de leader national dans la fabrication de bouteilles de gaz
-              Développer des solutions industrielles innovantes
-              Contribuer au développement du secteur énergétique en Algérie
-              Maintenir un haut niveau de qualité, sécurité et performance industrielle
-            </p>
+      <div className="missions">
+          <h3>Notre Mission</h3>
+
+        <div className="missions-grid">
+            <div className="mission-card">
+              Produire des équipements fiables et sécurisés
+            </div>
+
+          <div className="mission-card">
+             Répondre aux besoins énergétiques
           </div>
 
+          <div className="mission-card">
+            Garantir qualité et normes internationales
+          </div>
+
+          <div className="mission-card">
+            Assurer sécurité et durabilité
+          </div>
+        </div>
+      </div>
+
+            <div className="missions">
+          <h3>Notre Vision</h3>
+
+        <div className="missions-grid">
+          <div className="mission-card">
+            Renforcer sa position de leader national dans la fabrication de bouteilles de gaz            
+          </div>
+
+          <div className="mission-card">
+            Développer des solutions industrielles innovantes
+          </div>
+
+          <div className="mission-card">
+            Contribuer au développement du secteur énergétique en Algérie
+          </div>
+
+          <div className="mission-card">
+            Maintenir un haut niveau de qualité, sécurité et performance industrielle
+          </div>
+        </div>
+      </div>
+ 
           <div className="historique-histoire">
-            <h4>Historique </h4> 
+           <h3>Historique </h3> 
+           <ul>
+            <li>1972 : Création de l’entreprise BAG avec une capacité de production de 250 000 bouteilles par an.</li>
 
-            1972 : Création de l’entreprise BAG avec une capacité de production de 250 000 bouteilles par an.
+            <li>1995 : BAG devient une filiale à 100 % de NAFTAL.</li>
 
-            1995 : BAG devient une filiale à 100 % de NAFTAL.
+            <li>2003 : Obtention de la certification ISO 9001, garantissant un système de management de la qualité performant.</li>
 
-            2003 : Obtention de la certification ISO 9001, garantissant un système de management de la qualité performant.
+            <li>Années suivantes : Développement et modernisation des unités de production.</li>
 
-            Années suivantes : Développement et modernisation des unités de production.
-
-            Aujourd’hui : BAG produit plus de 750 000 bouteilles et 800 000 robinets par an, avec plus de 37 millions de bouteilles fabriquées depuis sa création.
-
+            <li>Aujourd’hui : BAG produit plus de 750 000 bouteilles et 800 000 robinets par an, avec plus de 37 millions de bouteilles fabriquées depuis sa création.</li>
+           </ul>
           </div>
           
           <div className="hitorique-patenaire">
-           <h4>Partenaires</h4>
-            Les principaux partenaires de BAG incluent des entreprises du secteur énergétique et industriel.
-            NAFTAL – Distribution de produits pétroliers et gaziers
-            SONATRACH – Groupe national énergétique
-            Entreprises industrielles et énergétiques nationales
-
+           <h3>Partenaires</h3>
+            <ul>
+            <li>Les principaux partenaires de BAG incluent des entreprises du secteur énergétique et industriel.</li>
+            <li>NAFTAL – Distribution de produits pétroliers et gaziers</li>
+            <li>SONATRACH – Groupe national énergétique</li>
+            <li>Entreprises industrielles et énergétiques nationales</li>
+            </ul>
+          
             <h4>Conditions Générales d’Utilisation (CGU)</h4>
             Les présentes Conditions Générales d’Utilisation définissent les règles d’utilisation du site web de l’entreprise BAG.
+           
             En accédant au site, l’utilisateur accepte les conditions suivantes :
-            Le site a pour objectif de fournir des informations sur les activités et les produits de l’entreprise.
+            
+            <li>Le site a pour objectif de fournir des informations sur les activités et les produits de l’entreprise.</li>
 
-            L’utilisateur s’engage à utiliser le site de manière légale et responsable.
+            <li>L’utilisateur s’engage à utiliser le site de manière légale et responsable.</li>
 
-            Les contenus présents sur le site (textes, images, logos) sont protégés par les droits de propriété intellectuelle.
+            <li>Les contenus présents sur le site (textes, images, logos) sont protégés par les droits de propriété intellectuelle.</li>
 
-            Toute reproduction ou utilisation non autorisée des contenus est interdite.
+            <li>Toute reproduction ou utilisation non autorisée des contenus est interdite.</li>
 
-            L’entreprise ne peut être tenue responsable des erreurs techniques ou interruptions du site.
+            <li>L’entreprise ne peut être tenue responsable des erreurs techniques ou interruptions du site.</li>
 
             <h4>Conditions Générales de Vente (CGV)</h4>
 
@@ -159,20 +194,57 @@ function Home() {
 
             Toute réclamation doit être effectuée dans un délai raisonnable après réception du produit.
           </div>
-        </div>
+        
         </div>
       </section>
 
 
+      {/* Prix Section */}
+      <section id="prix" className="prix">  
+        <h2 className="services-title">Nos Abonnements</h2>
+        
+        <div className="services-grid">
+          {/* Service 1 */}
+          <div className="service-card">
+            <div className="service-icon">
+              <FontAwesomeIcon icon={faBolt} />
+            </div>
+            <h3>Abonnement Gratuit</h3>
+            <p>Accès limité aux fonctionnalités de base</p>
+            00 DZD / mois
+          </div>
 
+          {/* Service 2 */}
+          <div className="service-card">
+            <div className="service-icon">
+              <FontAwesomeIcon icon={faBoxes} />
+            </div>
+            <h3>Abonnement Pro</h3>
+            <p>Accès complet avec des rapports détaillés et des alertes avancées</p>
+            750 DZD/mois
+          </div>
 
-
-
+          {/* Service 3 */}
+          <div className="service-card">
+            <div className="service-icon">
+              <FontAwesomeIcon icon={faChartBar} />
+            </div>
+            <h3>Abonnement Enterprise</h3>
+            <p>Plan personnalisé pour les besoins spécifiques</p>
+            2000 DZD/mois
+          </div> 
+        </div>
+      </section>
       
+      
+
+
+
+
+
+      <Footer />
     </>
   )
 }
 
 export default Home
-
-

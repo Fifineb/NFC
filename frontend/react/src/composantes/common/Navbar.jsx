@@ -27,26 +27,26 @@ function Navbar() {
             Accueil
           </Link>
         </li>
+        
         <li>
           <a 
             href="#services" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('services');
-            }}
+            onClick={(e) => { e.preventDefault(); scrollToSection('services'); }}
             className="nav-link"
           >
             Service
           </a>
         </li>
+        
         <li>
           <a href="#societe" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('societe'); }}>Société</a>
         </li>
+        
         <li>
           <a href="#prix" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('prix'); }}>Prix</a>
         </li>
         <li>
-          <a href="#contact" className="nav-link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
+            <Link to="/contact">Contact</Link>
         </li>
       </ul>
     </nav>
