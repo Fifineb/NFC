@@ -1,0 +1,110 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1f2029;
+  color: #ffeba7;
+}
+
+/* CONTAINER */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* SWITCH */
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  width: 60px;
+  height: 16px;
+  background: #ffeba7;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 15px 0;
+  position: relative;
+}
+
+label::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: black;
+  border-radius: 50%;
+  top: -7px;
+  left: 0;
+  transition: 0.4s;
+}
+
+input:checked + label::before {
+  transform: translateX(30px);
+}
+
+/* CARD 3D */
+.card-3d-wrap {
+  width: 400px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.card-3d-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.6s;
+}
+
+.card-3d-wrap.active .card-3d-wrapper {
+  transform: rotateY(180deg);
+}
+
+/* FACES */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #2b2e38;
+  border-radius: 10px;
+  padding: 30px;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* FORM */
+.form-group {
+  margin: 15px 0;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  background: #1f2029;
+  color: white;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #ffeba7;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: black;
+  color: #ffeba7;
+}

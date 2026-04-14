@@ -67,7 +67,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div id="register" className="regiter">
       <header>Formulaire d'inscription</header>
 
       <form onSubmit={validerFormulaire}>

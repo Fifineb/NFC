@@ -19,6 +19,7 @@ export default function Nouscontacter() {
     });
   };
  return ( 
+    <form>
         <fieldset>
           <legend>Nous contacter</legend>
 
@@ -47,7 +48,7 @@ export default function Nouscontacter() {
             <button type="submit">Envoyer</button>
 
         </fieldset>
-
+ </form>
   );
 }
 

@@ -11,7 +11,7 @@ function Home() {
       <Navbar/>
       
       {/* Hero Section */}
-      <section className="home">
+      <section id="top" className="home">
         <div className="home-text">
           <h1>Make Your Stock Smarter</h1>
           <p>
@@ -74,130 +74,156 @@ function Home() {
           </p>
         </div>
       </section>
+{/* Société Section - Version améliorée */}
+<section id="societe" className="societe">
+  <h2 className="societe-title">Notre Société</h2>
+  
+  {/* Description avec image */}
+  <div className="societe-description">
+    <div className="societe-description-image">
+      <img src={entrer} alt="Entreprise BAG" />
+    </div>
+    <div className="societe-description-text">
+      <h3>BAG - Batna Aluminium Gaz</h3>
+      <p>
+        BAG est une entreprise industrielle algérienne spécialisée dans la fabrication 
+        et la commercialisation de récipients à pression, notamment les bouteilles de 
+        gaz GPL utilisées dans les secteurs domestiques, industriels et automobiles.
+      </p>
+      <p>
+        Créée en 1972, l'entreprise joue aujourd'hui un rôle essentiel dans le marché 
+        énergétique algérien, en assurant la production d'équipements fiables et 
+        conformes aux normes de qualité et de sécurité.
+      </p>
+      <p>
+        BAG est certifiée <strong>ISO 9001</strong> (Système de Management de la Qualité), 
+        ce qui garantit l'amélioration continue de ses processus de production et la 
+        satisfaction de ses clients.
+      </p>
+      <p>
+        L'entreprise possède plusieurs unités de production en Algérie, notamment à 
+        <strong> Alger, Batna et Mascara</strong>, et emploie des centaines de 
+        collaborateurs spécialisés dans la fabrication industrielle.
+      </p>
+    </div>
+  </div>
 
-      {/* Société Section */}
-      <section id="societe" className="societe">
-        <h2 className="societe-title">Notre Société</h2>
-        <div className="historique">
-         <div className="description"> 
-          <div className="description-image">
-           <img src={entrer} alt="entreprise"/>
-          </div>
+  {/* Mission */}
+  <div className="societe-mission">
+    <h3>Notre Mission</h3>
+    <div className="mission-grid">
+      <div className="mission-card">
+        <div className="mission-icon">🎯</div>
+        <p>Produire des équipements fiables et sécurisés</p>
+      </div>
+      <div className="mission-card">
+        <div className="mission-icon">⚡</div>
+        <p>Répondre aux besoins énergétiques</p>
+      </div>
+      <div className="mission-card">
+        <div className="mission-icon">✅</div>
+        <p>Garantir qualité et normes internationales</p>
+      </div>
+      <div className="mission-card">
+        <div className="mission-icon">🔒</div>
+        <p>Assurer sécurité et durabilité</p>
+      </div>
+    </div>
+  </div>
 
-          <div className="historique-text" >
-            <h4>Description de l'entreprise : </h4> 
-            <p>
-             BAG (Batna Aluminium Gaz) est une entreprise industrielle algérienne spécialisée dans la fabrication et la commercialisation de récipients à pression, notamment les bouteilles de gaz GPL utilisées dans les secteurs domestiques, industriels et automobiles.
-             Créée en 1972, l’entreprise joue aujourd’hui un rôle essentiel dans le marché énergétique algérien, en assurant la production d’équipements fiables et conformes aux normes de qualité et de sécurité.
-             BAG est certifiée ISO 9001 (Système de Management de la Qualité), ce qui garantit l’amélioration continue de ses processus de production et la satisfaction de ses clients.
-             L’entreprise possède plusieurs unités de production en Algérie, notamment à Alger, Batna et Mascara, et emploie des centaines de collaborateurs spécialisés dans la fabrication industrielle.
-            </p>
-          </div>
-        </div>
+  {/* Vision */}
+  <div className="societe-vision">
+    <h3>Notre Vision</h3>
+    <div className="vision-grid">
+      <div className="vision-card">
+        <div className="vision-icon">🏆</div>
+        <p>Renforcer sa position de leader national</p>
+      </div>
+      <div className="vision-card">
+        <div className="vision-icon">💡</div>
+        <p>Développer des solutions industrielles innovantes</p>
+      </div>
+      <div className="vision-card">
+        <div className="vision-icon">🌍</div>
+        <p>Contribuer au développement du secteur énergétique</p>
+      </div>
+      <div className="vision-card">
+        <div className="vision-icon">📈</div>
+        <p>Maintenir qualité, sécurité et performance</p>
+      </div>
+    </div>
+  </div>
 
-      <div className="missions">
-          <h3>Notre Mission</h3>
-
-        <div className="missions-grid">
-            <div className="mission-card">
-              Produire des équipements fiables et sécurisés
-            </div>
-
-          <div className="mission-card">
-             Répondre aux besoins énergétiques
-          </div>
-
-          <div className="mission-card">
-            Garantir qualité et normes internationales
-          </div>
-
-          <div className="mission-card">
-            Assurer sécurité et durabilité
-          </div>
+  {/* Historique */}
+  <div className="societe-historique">
+    <h3>Historique</h3>
+    <div className="timeline">
+      <div className="timeline-item">
+        <div className="timeline-year">1972</div>
+        <div className="timeline-content">
+          Création de l'entreprise BAG avec une capacité de production de 250 000 bouteilles par an.
         </div>
       </div>
-
-            <div className="missions">
-          <h3>Notre Vision</h3>
-
-        <div className="missions-grid">
-          <div className="mission-card">
-            Renforcer sa position de leader national dans la fabrication de bouteilles de gaz            
-          </div>
-
-          <div className="mission-card">
-            Développer des solutions industrielles innovantes
-          </div>
-
-          <div className="mission-card">
-            Contribuer au développement du secteur énergétique en Algérie
-          </div>
-
-          <div className="mission-card">
-            Maintenir un haut niveau de qualité, sécurité et performance industrielle
-          </div>
+      <div className="timeline-item">
+        <div className="timeline-year">1995</div>
+        <div className="timeline-content">
+          BAG devient une filiale à 100% de NAFTAL.
         </div>
       </div>
- 
-          <div className="historique-histoire">
-           <h3>Historique </h3> 
-           <ul>
-            <li>1972 : Création de l’entreprise BAG avec une capacité de production de 250 000 bouteilles par an.</li>
-
-            <li>1995 : BAG devient une filiale à 100 % de NAFTAL.</li>
-
-            <li>2003 : Obtention de la certification ISO 9001, garantissant un système de management de la qualité performant.</li>
-
-            <li>Années suivantes : Développement et modernisation des unités de production.</li>
-
-            <li>Aujourd’hui : BAG produit plus de 750 000 bouteilles et 800 000 robinets par an, avec plus de 37 millions de bouteilles fabriquées depuis sa création.</li>
-           </ul>
-          </div>
-          
-          <div className="hitorique-patenaire">
-           <h3>Partenaires</h3>
-            <ul>
-            <li>Les principaux partenaires de BAG incluent des entreprises du secteur énergétique et industriel.</li>
-            <li>NAFTAL – Distribution de produits pétroliers et gaziers</li>
-            <li>SONATRACH – Groupe national énergétique</li>
-            <li>Entreprises industrielles et énergétiques nationales</li>
-            </ul>
-          
-            <h4>Conditions Générales d’Utilisation (CGU)</h4>
-            Les présentes Conditions Générales d’Utilisation définissent les règles d’utilisation du site web de l’entreprise BAG.
-           
-            En accédant au site, l’utilisateur accepte les conditions suivantes :
-            
-            <li>Le site a pour objectif de fournir des informations sur les activités et les produits de l’entreprise.</li>
-
-            <li>L’utilisateur s’engage à utiliser le site de manière légale et responsable.</li>
-
-            <li>Les contenus présents sur le site (textes, images, logos) sont protégés par les droits de propriété intellectuelle.</li>
-
-            <li>Toute reproduction ou utilisation non autorisée des contenus est interdite.</li>
-
-            <li>L’entreprise ne peut être tenue responsable des erreurs techniques ou interruptions du site.</li>
-
-            <h4>Conditions Générales de Vente (CGV)</h4>
-
-            Les présentes Conditions Générales de Vente régissent les relations commerciales entre l’entreprise BAG et ses clients.
-
-            <h5>Principes principaux :</h5>
-
-            Les produits commercialisés respectent les normes de sécurité et de qualité en vigueur.
-
-            Les commandes sont confirmées après validation des conditions commerciales et des disponibilités.
-
-            Les délais de livraison peuvent varier selon la quantité et la localisation du client.
-
-            Les produits sont garantis contre les défauts de fabrication selon les normes applicables.
-
-            Toute réclamation doit être effectuée dans un délai raisonnable après réception du produit.
-          </div>
-        
+      <div className="timeline-item">
+        <div className="timeline-year">2003</div>
+        <div className="timeline-content">
+          Obtention de la certification ISO 9001, garantissant un système de management de la qualité performant.
         </div>
-      </section>
+      </div>
+      <div className="timeline-item">
+        <div className="timeline-year">Aujourd'hui</div>
+        <div className="timeline-content">
+          BAG produit plus de 750 000 bouteilles et 800 000 robinets par an, avec plus de 37 millions de bouteilles fabriquées depuis sa création.
+        </div>
+      </div>
+    </div>
+  </div>
 
+  {/* Partenaires */}
+  <div className="societe-partenaires">
+    <h3>Nos Partenaires</h3>
+    <div className="partenaires-grid">
+      <div className="partenaire-card">NAFTAL</div>
+      <div className="partenaire-card">SONATRACH</div>
+      <div className="partenaire-card">Entreprises industrielles nationales</div>
+    </div>
+  </div>
+
+  {/* CGU & CGV */}
+  <div className="societe-legal">
+    <div className="legal-card">
+      <h4>Conditions Générales d'Utilisation (CGU)</h4>
+      <p>Les présentes Conditions Générales d'Utilisation définissent les règles d'utilisation du site web de l'entreprise BAG.</p>
+      <p>En accédant au site, l'utilisateur accepte les conditions suivantes :</p>
+      <ul>
+        <li>Le site a pour objectif de fournir des informations sur les activités et les produits de l'entreprise.</li>
+        <li>L'utilisateur s'engage à utiliser le site de manière légale et responsable.</li>
+        <li>Les contenus présents sur le site (textes, images, logos) sont protégés par les droits de propriété intellectuelle.</li>
+        <li>Toute reproduction ou utilisation non autorisée des contenus est interdite.</li>
+        <li>L'entreprise ne peut être tenue responsable des erreurs techniques ou interruptions du site.</li>
+      </ul>
+    </div>
+
+    <div className="legal-card">
+      <h4>Conditions Générales de Vente (CGV)</h4>
+      <p>Les présentes Conditions Générales de Vente régissent les relations commerciales entre l'entreprise BAG et ses clients.</p>
+      <h5>Principes principaux :</h5>
+      <ul>
+        <li>Les produits commercialisés respectent les normes de sécurité et de qualité en vigueur.</li>
+        <li>Les commandes sont confirmées après validation des conditions commerciales et des disponibilités.</li>
+        <li>Les délais de livraison peuvent varier selon la quantité et la localisation du client.</li>
+        <li>Les produits sont garantis contre les défauts de fabrication selon les normes applicables.</li>
+        <li>Toute réclamation doit être effectuée dans un délai raisonnable après réception du produit.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
       {/* Prix Section */}
       <section id="prix" className="prix">  

@@ -30,8 +30,8 @@ function Footer() {
         <div className="footer-section">
           <h3>Liens utiles</h3>
           <ul>
-            <li><a href="#home">Accueil</a></li>
-            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#top">Accueil</a></li>
+            <li><Link to="/features">Fonctionnalités</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
