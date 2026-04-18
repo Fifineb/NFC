@@ -1,22 +1,30 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from "./Pages/public/Home"
-import Contact from "./Pages/public/Contact"
-import Register from "./Pages/public/Register";
-import Nouscontacter from "./Pages/public/Nouscontacter";
-
-import "./assets/styles/global.css"
+import { useEffect, useState } from "react";
+import { getRegions } from "./services/api/regionApi";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/nouscontacter" element={<Nouscontacter />} />
+  const [regions, setRegions] = useState([]);
 
-      </Routes>
-    </BrowserRouter>
+ useEffect(() => {
+  getRegions()
+    .then(res => {
+      console.log(res.data); 
+      setRegions(res.data);
+    })
+    .catch(err => console.error(err));
+}, []);
+
+  return (
+    <div>
+      <h1>Liste des régions</h1>
+
+      {regions.map((r) => (
+        <div key={r.id}>
+          <h3>{r.nomR}</h3>
+          <p>{r.description}</p>
+          <p>{r.adresseR}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 
