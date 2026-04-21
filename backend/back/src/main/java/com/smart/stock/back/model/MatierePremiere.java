@@ -33,6 +33,8 @@ public class MatierePremiere {
     )
     private List<Categorie> categories;
 
+    public MatierePremiere() {
+    }
     
     public MatierePremiere(Integer id_pr, String nom_pr, String description, Double seuil_minimal, String unite_mesure,
             LocalDateTime date_creation, LocalDateTime date_modification, StatutMatiere statut, Boolean actif) {

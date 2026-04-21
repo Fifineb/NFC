@@ -28,6 +28,9 @@ public class Commande {
     @JoinColumn(name = "matiere_id")
     private MatierePremiere matiere;
     
+    public Commande() {
+    }
+
     public Commande(Integer id_cm, LocalDateTime date_commande, LocalDate date_livraison_prevue,
             LocalDate date_livraison_reelle, Double quantite_commandee, StatutCommande statut, Fournisseur fournisseur,
             MatierePremiere matiere) {

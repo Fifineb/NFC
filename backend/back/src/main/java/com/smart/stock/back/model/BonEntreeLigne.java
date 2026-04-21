@@ -25,6 +25,9 @@ public class BonEntreeLigne {
     private Double montant;
     private String uniteMesure;
     
+    public BonEntreeLigne() {
+    }
+
     public BonEntreeLigne(Integer idLigne, BonEntree bonEntree, MatierePremiere produit, Double quantiteConforme,
             Double quantiteRefusee, Double prixUnitaire, Double montant, String uniteMesure) {
         this.idLigne = idLigne;

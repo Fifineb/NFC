@@ -35,4 +35,35 @@ public class DemandeAchat {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+
+    public DemandeAchat(Integer idDa, String numeroDossier, LocalDate dateDemande, String departement, String service,
+            String natureMateriel, String destination, String referenceMateriel, String fournisseurPropose,
+            String adresseFournisseur, String villePays, String delaiSouhaite, Boolean urgence, String emetteur,
+            String chefService, String visa, String statut, LocalDateTime dateCreation, Utilisateur utilisateur) {
+        this.idDa = idDa;
+        this.numeroDossier = numeroDossier;
+        this.dateDemande = dateDemande;
+        this.departement = departement;
+        this.service = service;
+        this.natureMateriel = natureMateriel;
+        this.destination = destination;
+        this.referenceMateriel = referenceMateriel;
+        this.fournisseurPropose = fournisseurPropose;
+        this.adresseFournisseur = adresseFournisseur;
+        this.villePays = villePays;
+        this.delaiSouhaite = delaiSouhaite;
+        this.urgence = urgence;
+        this.emetteur = emetteur;
+        this.chefService = chefService;
+        this.visa = visa;
+        this.statut = statut;
+        this.dateCreation = dateCreation;
+        this.utilisateur = utilisateur;
+    }
+
+    public DemandeAchat() {
+    }
+
+    
+
 }

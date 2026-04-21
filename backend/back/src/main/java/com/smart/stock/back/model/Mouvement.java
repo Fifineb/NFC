@@ -24,6 +24,9 @@ public class Mouvement {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
+    public Mouvement() {
+    }
+
     public Mouvement(Integer id_mouvement, LocalDateTime date_mouvement, Double quantite, String reference_bon,
             String observation, String type_mouvement, Stock stock, Utilisateur utilisateur) {
         this.id_mouvement = id_mouvement;

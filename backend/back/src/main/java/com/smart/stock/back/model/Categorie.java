@@ -16,6 +16,8 @@ public class Categorie {
     @ManyToMany(mappedBy = "categories")
     private List<MatierePremiere> matieres;
 
+    public Categorie() {}
+    
     public Categorie(Integer id_categorie, String nom_categorie, String description, List<MatierePremiere> matieres) {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;

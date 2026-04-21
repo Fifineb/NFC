@@ -32,7 +32,7 @@ public class DemandeAchatController {
     }
     
     @PostMapping("/create")
-    public ResponseEntity<DemandeAchat> createDemandeAchat(@RequestBody DemandeAchat demande) {
+    public ResponseEntity<Object> createDemandeAchat(@RequestBody DemandeAchat demande) {
         return ResponseEntity.ok(demandeAchatService.saveDemandeAchat(demande));
     }
 }

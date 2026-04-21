@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class BonEntreeService {
     
+    
     @Autowired
     private BonEntreeRepository bonEntreeRepository;
     
@@ -31,7 +32,7 @@ public class BonEntreeService {
         return bonEntreeRepository.findRecentBonEntree(LocalDate.now().minusDays(30));
     }
     
-    public void deleteBonEntree(Integer id) {
-        bonEntreeRepository.deleteById(id);
+    public void deleteBonEntree(Integer id_be) {
+        bonEntreeRepository.deleteById(id_be);
     }
 }

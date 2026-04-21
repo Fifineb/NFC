@@ -24,6 +24,8 @@ public class Fournisseur {
     @OneToMany(mappedBy = "fournisseur")
     private List<Commande> commandes;
 
+    public Fournisseur() {
+    }
     
     public Fournisseur(Integer id_f, String raison_sociale, String email, String adresse, String telephone,
             Boolean actif, LocalDateTime date_creation, LocalDateTime date_modification, List<Commande> commandes) {

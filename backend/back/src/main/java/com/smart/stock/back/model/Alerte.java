@@ -20,6 +20,9 @@ public class Alerte {
     @JoinColumn(name = "matiere_id")
     private MatierePremiere matiere;
 
+    public Alerte() {
+    }
+
     public Alerte(Integer id_alerte, LocalDateTime date_alerte, String message, StatutAlerte statut,
             MatierePremiere matiere) {
         this.id_alerte = id_alerte;

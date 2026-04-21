@@ -1,8 +1,10 @@
 package com.smart.stock.back.model;
 
+import java.time.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class BonEntree {
@@ -12,9 +14,14 @@ public class BonEntree {
     private Integer id_be;
 
     private String numero_be;
-    private LocalDate date_be;
     private String code_operation;
     private String provenance;
+
+    @Column(name = "date_be")
+    private LocalDate dateBe;
+
+    @CreationTimestamp
+    private LocalDateTime dateCreation;
 
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
@@ -22,6 +29,30 @@ public class BonEntree {
 
     private String observation;
 
+    public BonEntree() {
+    }
+
+    public BonEntree(Integer id_be, String numero_be, String code_operation,
+                    String provenance, LocalDate dateBe,
+                    Fournisseur fournisseur, String observation) {
+        this.id_be = id_be;
+        this.numero_be = numero_be;
+        this.code_operation = code_operation;
+        this.provenance = provenance;
+        this.dateBe = dateBe;
+        this.fournisseur = fournisseur;
+        this.observation = observation;
+    }
+
+
+
+    public LocalDateTime getDateCreation() {
+    return dateCreation;
+}
+
+public void setDateCreation(LocalDateTime dateCreation) {
+    this.dateCreation = dateCreation;
+}
     public Integer getId_be() {
         return id_be;
     }
@@ -38,13 +69,7 @@ public class BonEntree {
         this.numero_be = numero_be;
     }
 
-    public LocalDate getDate_be() {
-        return date_be;
-    }
-
-    public void setDate_be(LocalDate date_be) {
-        this.date_be = date_be;
-    }
+     
 
     public String getCode_operation() {
         return code_operation;
@@ -78,9 +103,5 @@ public class BonEntree {
         this.observation = observation;
     }
 
-    public void setDateCreation(LocalDateTime now) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDateCreation'");
-    }
-
+  
 }

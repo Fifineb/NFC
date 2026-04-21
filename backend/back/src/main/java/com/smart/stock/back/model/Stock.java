@@ -24,7 +24,8 @@ public class Stock {
     @JoinColumn(name = "matiere_id")
     private MatierePremiere matiere;
 
-    
+    public Stock() {
+    }
 
 
     public Stock(Integer id_st, Double quantite_actuelle, String gisement, LocalDateTime date_mise_a_jour,

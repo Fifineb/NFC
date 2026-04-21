@@ -26,6 +26,9 @@ public class Utilisateur {
 
     @OneToMany(mappedBy = "utilisateur")
     private List<Mouvement> mouvements;
+    
+    public Utilisateur() {
+    }
 
     public Utilisateur(Integer id_user, String nom, String prenom, String email, String mot_de_passe,
             StatutUtilisateur statut, RoleUtilisateur role, LocalDateTime date_creation, List<Mouvement> mouvements) {
