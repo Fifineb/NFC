@@ -1,0 +1,157 @@
+{
+  "app": {
+    "name": "SmartStock",
+    "tagline": "Smart Stock Management"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "stock": "Stock",
+    "suppliers": "Suppliers",
+    "regions": "Regions",
+    "contact": "Contact",
+    "login": "Login",
+    "logout": "Logout",
+    "settings": "Settings",
+    "profile": "Profile"
+  },
+  "home": {
+    "welcome": "Welcome to SmartStock",
+    "subtitle": "Complete stock management solution",
+    "description": "Efficiently manage your raw materials, stocks and suppliers",
+    "features": {
+      "title": "Features",
+      "stock": "Real-time stock management",
+      "suppliers": "Supplier management",
+      "reports": "Detailed reports",
+      "alerts": "Stockout alerts"
+    },
+    "cta": "Get started now"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to help",
+    "name": "Full name",
+    "email": "Email address",
+    "phone": "Phone number",
+    "message": "Your message",
+    "send": "Send message",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again later.",
+    "info": "We will get back to you as soon as possible",
+    "address": "Algiers, Algeria",
+    "email_contact": "contact@smartstock.dz"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "remember": "Remember me",
+    "submit": "Sign in",
+    "forgot": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "register": "Sign up",
+    "error": "Invalid email or password"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {{name}}",
+    "stats": {
+      "total_products": "Total products",
+      "low_stock": "Low stock",
+      "out_of_stock": "Out of stock",
+      "suppliers": "Active suppliers"
+    },
+    "recent_activity": "Recent activity",
+    "alerts": "Alerts",
+    "charts": {
+      "stock_status": "Stock status",
+      "movements": "Movements"
+    }
+  },
+  "products": {
+    "title": "Product Management",
+    "add": "Add product",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search...",
+    "filter": "Filter",
+    "table": {
+      "name": "Name",
+      "description": "Description",
+      "threshold": "Min threshold",
+      "unit": "Unit",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "form": {
+      "name": "Product name",
+      "description": "Description",
+      "threshold": "Alert threshold",
+      "unit": "Unit of measure",
+      "submit": "Save",
+      "cancel": "Cancel"
+    }
+  },
+  "stock": {
+    "title": "Stock Management",
+    "current": "Current stock",
+    "incoming": "Incoming",
+    "outgoing": "Outgoing",
+    "movement": {
+      "add": "Add movement",
+      "type": "Type",
+      "quantity": "Quantity",
+      "date": "Date",
+      "reference": "Reference"
+    },
+    "alert": {
+      "low": "Low stock!",
+      "critical": "Critical stock!",
+      "threshold": "Minimum quantity reached"
+    }
+  },
+  "suppliers": {
+    "title": "Supplier Management",
+    "add": "Add supplier",
+    "company": "Company name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "regions": {
+    "title": "Region Management",
+    "name": "Region name",
+    "description": "Description",
+    "address": "Address",
+    "magasins": "Stores",
+    "add": "Add region",
+    "edit": "Edit region",
+    "delete": "Delete region"
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "system": "System"
+  },
+  "language": {
+    "fr": "French",
+    "en": "English",
+    "ar": "Arabic"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use"
+  },
+  "errors": {
+    "404": "Page not found",
+    "500": "Server error",
+    "network": "Connection error",
+    "unauthorized": "Unauthorized"
+  }
+}

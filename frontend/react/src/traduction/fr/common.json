@@ -1,0 +1,157 @@
+{
+  "app": {
+    "name": "SmartStock",
+    "tagline": "Gestion de Stock Intelligente"
+  },
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de Bord",
+    "products": "Produits",
+    "stock": "Stock",
+    "suppliers": "Fournisseurs",
+    "regions": "Régions",
+    "contact": "Contact",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "settings": "Paramètres",
+    "profile": "Profil"
+  },
+  "home": {
+    "welcome": "Bienvenue sur SmartStock",
+    "subtitle": "Solution complète de gestion de stock",
+    "description": "Gérez efficacement vos matières premières, stocks et fournisseurs",
+    "features": {
+      "title": "Fonctionnalités",
+      "stock": "Gestion de stock en temps réel",
+      "suppliers": "Gestion des fournisseurs",
+      "reports": "Rapports détaillés",
+      "alerts": "Alertes de rupture"
+    },
+    "cta": "Commencer maintenant"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes là pour vous aider",
+    "name": "Nom complet",
+    "email": "Adresse email",
+    "phone": "Téléphone",
+    "message": "Votre message",
+    "send": "Envoyer le message",
+    "success": "Message envoyé avec succès !",
+    "error": "Erreur lors de l'envoi. Réessayez plus tard.",
+    "info": "Nous vous répondrons dans les plus brefs délais",
+    "address": "Alger, Algérie",
+    "email_contact": "contact@smartstock.dz"
+  },
+  "login": {
+    "title": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "remember": "Se souvenir de moi",
+    "submit": "Se connecter",
+    "forgot": "Mot de passe oublié ?",
+    "no_account": "Pas de compte ?",
+    "register": "S'inscrire",
+    "error": "Email ou mot de passe incorrect"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "welcome": "Bienvenue, {{name}}",
+    "stats": {
+      "total_products": "Produits total",
+      "low_stock": "Stock faible",
+      "out_of_stock": "En rupture",
+      "suppliers": "Fournisseurs actifs"
+    },
+    "recent_activity": "Activités récentes",
+    "alerts": "Alertes",
+    "charts": {
+      "stock_status": "État du stock",
+      "movements": "Mouvements"
+    }
+  },
+  "products": {
+    "title": "Gestion des Produits",
+    "add": "Ajouter un produit",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "search": "Rechercher...",
+    "filter": "Filtrer",
+    "table": {
+      "name": "Nom",
+      "description": "Description",
+      "threshold": "Seuil minimal",
+      "unit": "Unité",
+      "status": "Statut",
+      "actions": "Actions"
+    },
+    "form": {
+      "name": "Nom du produit",
+      "description": "Description",
+      "threshold": "Seuil d'alerte",
+      "unit": "Unité de mesure",
+      "submit": "Enregistrer",
+      "cancel": "Annuler"
+    }
+  },
+  "stock": {
+    "title": "Gestion du Stock",
+    "current": "Stock actuel",
+    "incoming": "Entrées",
+    "outgoing": "Sorties",
+    "movement": {
+      "add": "Ajouter mouvement",
+      "type": "Type",
+      "quantity": "Quantité",
+      "date": "Date",
+      "reference": "Référence"
+    },
+    "alert": {
+      "low": "Stock bas !",
+      "critical": "Stock critique !",
+      "threshold": "Quantité minimale atteinte"
+    }
+  },
+  "suppliers": {
+    "title": "Gestion des Fournisseurs",
+    "add": "Ajouter fournisseur",
+    "company": "Raison sociale",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "status": "Statut",
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "regions": {
+    "title": "Gestion des Régions",
+    "name": "Nom de la région",
+    "description": "Description",
+    "address": "Adresse",
+    "magasins": "Magasins",
+    "add": "Ajouter région",
+    "edit": "Modifier région",
+    "delete": "Supprimer région"
+  },
+  "theme": {
+    "light": "Mode clair",
+    "dark": "Mode sombre",
+    "system": "Système"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English",
+    "ar": "العربية"
+  },
+  "footer": {
+    "rights": "Tous droits réservés",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "errors": {
+    "404": "Page non trouvée",
+    "500": "Erreur serveur",
+    "network": "Erreur de connexion",
+    "unauthorized": "Non autorisé"
+  }
+}
