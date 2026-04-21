@@ -2,6 +2,7 @@ package com.smart.stock.back.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class BonEntree {
@@ -75,6 +76,11 @@ public class BonEntree {
 
     public void setObservation(String observation) {
         this.observation = observation;
+    }
+
+    public void setDateCreation(LocalDateTime now) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDateCreation'");
     }
 
 }
