@@ -1,0 +1,350 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0.5rem;
+    height: 94vh;
+}
+.menu--header {
+    align-items: center;  
+    padding: 10px;
+    color: #123456;
+    align-items: center;
+    display: flex;
+    gap: 30px;
+}
+.menu--header button {
+
+    cursor: pointer;
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    margin-bottom: 12px !important;
+}
+.icon{
+    font-size: 1.4rem;
+}
+
+.logout {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 20px;
+    font-size: 1.1rem ;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    color: #123456;
+}
+
+.menu--list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.menu--list .item{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem ;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    color: #123456;
+}
+.menu--list .item:hover{
+    background: #123456;
+    color: #f0f2f5;
+}
+
+
+.menu.active {
+    width: 250px;
+    transition: 0.3s;
+}
+
+
+.menu.close {
+    width: 80px;
+    transition: 0.3s;
+}
+
+.menu.open .logout{
+    padding: 0.5rem 3.5rem;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+    background: #123456;
+    color: #f0f2f5;
+}
+
+.menu.close .menu--list .item,
+.menu.close .logout,
+.menu.close .menu--header {
+    justify-content: center;
+}
+
+
+.menu.close .item span {
+    display: none;
+}
+
+.cal-header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+.cal-month { 
+    font-size: 16px; 
+    font-weight: 700; 
+    color: #1A1A2E; 
+}
+.cal-nav { 
+    display: flex; 
+    gap: 4px; 
+}
+.cal-nav button {
+    width: 24px; 
+    height: 24px; 
+    border-radius: 6px; 
+    background: #fff;
+    border: none;
+    cursor: pointer; 
+    font-size: 14px; 
+    color: #14224a; 
+}
+.cal-grid { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 2px; 
+    margin-top: 8px; 
+}
+.cal-day-name { 
+    font-size: 10px; 
+    font-weight: 600; 
+    color: #1A1A2E; 
+    text-align: center; 
+    padding: 4px 0; 
+}
+.cal-day { 
+    font-size: 11px; 
+    text-align: center; 
+    padding: 5px 2px; 
+    border-radius: 7px; 
+    cursor: pointer; 
+    color: #1A1A2E; 
+}
+.cal-day.today { 
+    background: #123456; 
+    color: #fff; 
+    font-weight: 700; 
+}
+.cal-day.other-month { 
+    color: #1A1A2E; 
+    opacity: 0.4; 
+}
+
+/* ── Container ── */
+.todo-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+/* ── Groups ── */
+.todo-group {
+  background: #f0f2f5;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Each row ── */
+.todo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  padding: 13px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #eaecef;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.todo-row:last-child {
+  border-bottom: none;
+}
+
+.todo-row:hover {
+  background: #f7f9fc;
+}
+
+.todo-row-done {
+  background: #f5f6f8;
+}
+
+.todo-row-done:hover {
+  background: #eff1f4;
+}
+
+/* ── Circle checkbox ── */
+.todo-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #b0bac8;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s;
+  padding: 0;
+}
+
+.todo-circle:hover {
+  border-color: #123456;
+}
+
+.todo-circle-done {
+  background: #123456;
+  border-color: #123456;
+}
+
+.check-icon {
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+/* ── Labels ── */
+.todo-label {
+  font-size: 0.88rem;
+  color: #22313f;
+  font-weight: 400;
+  flex: 1;
+}
+
+.todo-label-done {
+  text-decoration: line-through;
+  color: #9aa3ae;
+}
+
+/* ── Completed toggle ── */
+.completed-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #e8edf3;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #123456;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.completed-toggle:hover {
+  background: #dde3ec;
+}
+
+.toggle-icon {
+  font-size: 1rem;
+  color: #123456;
+}
+
+.completed-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #123456;
+}
+
+/* ── Add task button ── */
+.todo-add-group {
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.todo-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: #5a6a80;
+  font-weight: 500;
+  transition: background 0.15s;
+  border-radius: 12px;
+}
+
+.todo-add-btn:hover {
+  background: #ffffff;
+  color: #123456;
+}
+
+.add-plus-icon {
+  font-size: 1.1rem;
+  color: #123456;
+  flex-shrink: 0;
+}
+
+/* ── Add input ── */
+.todo-add-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #22313f;
+  font-weight: 400;
+  flex: 1;
+  font-family: inherit;
+}
+
+.todo-add-input::placeholder {
+  color: #9aa3ae;
+}
+/* ── Delete button ── */
+.todo-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c8d0dc;
+  font-size: 1rem;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.15s ease, transform 0.15s ease, color 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+  width: 30px;
+}
+
+/* Visible au hover de la ligne */
+.todo-row:hover .todo-delete-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Rouge au hover direct du bouton */
+.todo-delete-btn:hover {
+  color: #c62828;
+  background: #fde8e8;
+  border-radius: 7px;
+}

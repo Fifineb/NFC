@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import Header from './Header'
-import '../styles/global.css'
+import '../styles/main.css'
 import '../styles/fields.css'
 
 
