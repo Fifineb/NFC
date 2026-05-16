@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BiHome, BiMessage, BiSolidReport, BiStats, BiTask, BiBookAlt, BiMenu, BiUserPlus, BiStore } from 'react-icons/bi'
-import '../styles/menu.css'
+import '../../assets/styles/menu.css'
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true)

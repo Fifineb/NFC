@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react'
-import Sidebar from '../components/Sidebar'
-import Header  from '../components/Header'
+import Sidebar from './Sidebar'
+import Header  from './Header'
 import StockDetail from './StockDetail'
 import { BiSearch, BiSortAlt2, BiChevronDown, BiChevronUp,
          BiPackage, BiError, BiInfoCircle, BiShow, BiEdit, BiCheck, BiX } from 'react-icons/bi'
-import '../styles/listestock.css'
+import '../../assets/styles/listestock.css'
 
 const UNITES = ['Alger', 'Mascara', 'Batna']
 

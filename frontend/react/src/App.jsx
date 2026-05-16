@@ -26,8 +26,9 @@ import NousContact from './Pages/public/Nouscontacter';
 import Register from './Pages/public/Register';
 import ScrollToTop from './composantes/common/ScrollToTop';
 import HomeUSER from './Pages/private/Home';
-import Listestock from './Pages/private/Listestock'
+import ListeStock from './Pages/private/ListeStock'
 import Message from './Pages/private/Message'
+import Notifications from './Pages/private/Notifications'
 
 import './assets/styles/global.css';
 import './i18n';
@@ -46,6 +47,8 @@ function AppRoutes() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/notifications" element={<Notifications />} />
+
             </Routes>
         );
     }
@@ -66,9 +69,10 @@ function AppRoutes() {
                     <Route path="/regions" element={<Regions />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
-                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/notifications" element={<Notifications />} />
                 </Routes>
             </Layout>
         );
@@ -87,9 +91,10 @@ function AppRoutes() {
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
-                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/notifications" element={<Notifications />} />
                 </Routes>
             </Layout>
         );
@@ -106,8 +111,10 @@ function AppRoutes() {
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
-                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                    
                 </Routes>
             </Layout>
         );
@@ -124,7 +131,7 @@ function AppRoutes() {
                     <Route path="/rapports" element={<Rapport />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
-                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/rapport" element={<Rapport />} />
                 </Routes>

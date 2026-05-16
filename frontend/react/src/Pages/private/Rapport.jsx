@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Sidebar from '../../composantes/common/Sidebar'
-import Header from '../../composantes/common/Header'
-import RapportDetail from '../private/RapportDetail'
-import NouveauRapport from '../private/NouveauRapport'
+import Sidebar from './Sidebar'
+import Header from './Header'
+import RapportDetail from './RapportDetail'
+import NouveauRapport from './NouveauRapport'
 import { BiDownload, BiFilter, BiPlus, BiSearch, BiFile, BiTrash, BiShow } from 'react-icons/bi'
 import '../../assets/styles/rapport.css';
 
