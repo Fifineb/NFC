@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BiHome, BiMessage, BiSolidReport, BiStats, BiTask, BiBookAlt, BiMenu, BiLogOut } from 'react-icons/bi'
-import '../../assets/styles/menu.css'
+import { BiHome, BiMessage, BiSolidReport, BiStats, BiTask, BiBookAlt, BiMenu, BiUserPlus, BiStore } from 'react-icons/bi'
+import '../styles/menu.css'
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true)
@@ -25,7 +25,7 @@ const Sidebar = () => {
           {open && "Mouvements"}
         </Link>
 
-        <Link to="/listestock" className="item">
+        <Link to="/listeStock" className="item">
           <BiBookAlt className='icon'/> 
           {open && "Stock"}
         </Link>
@@ -35,7 +35,21 @@ const Sidebar = () => {
           {open && "Messages"}
         </Link>
 
+<<<<<<< HEAD
         <Link to="/rapports" className="item">
+=======
+        <Link to="/adduser" className="item">
+          <BiUserPlus className='icon'/> 
+          {open && "Add User"}
+        </Link>
+
+        <Link to="/fournisseur" className="item">
+          <BiStore className='icon'/> 
+          {open && "Fournisseur"}
+        </Link>
+
+        <Link to="/rapport" className="item">
+>>>>>>> 6787b6b232e37efca7cf02dec004efe5043cbe83
           <BiSolidReport className='icon'/> 
           {open && "Rapport"}
         </Link>
@@ -45,11 +59,7 @@ const Sidebar = () => {
           {open && "Statistics"}
         </Link>
       </div>
-
-      <Link to="/logout" className="item logout">
-        <BiLogOut className='icon'/> 
-        {open && "Logout"}
-      </Link>
+      
 
     </div>
   )
