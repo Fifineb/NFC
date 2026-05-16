@@ -25,21 +25,6 @@
     font-size: 1.4rem;
 }
 
-.logout {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 20px;
-    font-size: 1.1rem ;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 10px;
-    transition: 0.3s ease-in-out;
-    color: #123456;
-}
-
 .menu--list {
     display: flex;
     flex-direction: column;
@@ -74,7 +59,7 @@
     transition: 0.3s;
 }
 
-.menu.open .logout{
+.menu.open {
     padding: 0.5rem 3.5rem;
     border-radius: 30px;
     transition: 0.3s ease-in-out;
@@ -83,7 +68,6 @@
 }
 
 .menu.close .menu--list .item,
-.menu.close .logout,
 .menu.close .menu--header {
     justify-content: center;
 }

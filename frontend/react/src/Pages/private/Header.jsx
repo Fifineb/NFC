@@ -1,8 +1,9 @@
 import React from 'react'
-import { BiBell, BiSearch, BiCog } from 'react-icons/bi'
-import logo from '../../assets/images/Baggaznaftal.webp'
+import { BiBell, BiCog, BiLogOut } from 'react-icons/bi'
+import logo from '../assets/Baggaznaftal.webp'
 import { Link } from 'react-router-dom'
-import '../../assets/styles/main.css'
+import '../styles/main.css'
+
 
 
 const Header = () => {
@@ -14,11 +15,6 @@ const Header = () => {
       </div>
       <div className="Header--activity">
 
-        <div className="search-box">
-          <input type="text" placeholder="Search..." />
-          <BiSearch className="icon" />
-        </div>
-
         <div className="notify">
           <Link to="/notifications">
             <BiBell className="icon" />
@@ -29,6 +25,12 @@ const Header = () => {
             <BiCog className="icon" />
           </Link>
         </div>
+        <div className="logout">
+          <Link to="/logout">
+            <BiLogOut className="icon" />
+          </Link>
+        </div>
+
 
       </div>
 
