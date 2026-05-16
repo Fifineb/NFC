@@ -17,7 +17,7 @@ import SupervisorDashboard from './Pages/Dashboard/SupervisorDashboard';
 import Produits from './Pages/private/Produits';
 import Suppliers from './Pages/private/Suppliers';
 import BonEntree from './Pages/private/BonEntree';
-import Raports from './Pages/private/Raports';
+import Rapport from './Pages/private/Rapport';
 import Regions from './Pages/private/Regions';
 import Profile from './composantes/common/Profile';
 import Home from './Pages/public/Home';
@@ -59,7 +59,7 @@ function AppRoutes() {
                     <Route path="/admin/dashboard" element={<AdminDashboard />} />
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/rapports" element={<Raports />} />
+                    <Route path="/rapports" element={<Rapport />} />
                     <Route path="/stock" element={<BonEntree />} />
                     <Route path="/regions" element={<Regions />} />
                     <Route path="/profile" element={<Profile />} />
@@ -77,7 +77,7 @@ function AppRoutes() {
                     <Route path="/manager/dashboard" element={<ManagerDashboard />} />
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/rapports" element={<Raports />} />
+                    <Route path="/rapport" element={<Rapport />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
@@ -108,7 +108,7 @@ function AppRoutes() {
                     <Route path="/" element={<Navigate to="/supervisor/dashboard" />} />
                     <Route path="/supervisor/dashboard" element={<SupervisorDashboard />} />
                     <Route path="/produits" element={<Produits readOnly />} />
-                    <Route path="/rapports" element={<Raports />} />
+                    <Route path="/rapports" element={<Rapport />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>
             </Layout>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { BiArrowBack, BiTrash, BiDownload, BiCalendar,
          BiBuilding, BiMoney, BiFile } from 'react-icons/bi'
-import '../styles/rapport.css'
+import '../../assets/styles/rapport.css';
+
 
 const RapportDetail = ({ rapport, typeColors, fmt, onBack, onDelete }) => {
   const r      = rapport

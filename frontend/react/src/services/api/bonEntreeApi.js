@@ -1,56 +1,28 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8081/api';
+import api from './axiosConfig';
 
 export const bonEntreeApi = {
-    // Récupérer tous les bons d'entrée
-    getAll: async () => {
-        const response = await axios.get(`${API_URL}/bon-entree/all`);
-        return response.data;
-    },
-    
-    // Récupérer les bons d'entrée récents
-    getRecent: async () => {
-        const response = await axios.get(`${API_URL}/bon-entree/recent`);
-        return response.data;
-    },
-    
-    // Récupérer un bon d'entrée par ID
-    getById: async (id) => {
-        const response = await axios.get(`${API_URL}/bon-entree/${id}`);
-        return response.data;
-    },
-    
-    // Créer un bon d'entrée
-    create: async (bonEntree) => {
-        const response = await axios.post(`${API_URL}/bon-entree/create`, bonEntree);
-        return response.data;
-    },
-    
-    // Supprimer un bon d'entrée
-    delete: async (id) => {
-        await axios.delete(`${API_URL}/bon-entree/${id}`);
-    }
-};
 
-export const demandeAchatApi = {
     getAll: async () => {
-        const response = await axios.get(`${API_URL}/demande-achat/all`);
+        const response = await api.get('/api/bon-entree');
         return response.data;
     },
-    
-    getUrgentes: async () => {
-        const response = await axios.get(`${API_URL}/demande-achat/urgentes`);
+
+  /*  getRecent: async () => {
+        const response = await api.get('/api/bon-entree/recent');
+        return response.data;
+    },*/
+
+    getById: async (id) => {
+        const response = await api.get(`/api/bon-entree/${id}`);
         return response.data;
     },
-    
-    getByStatut: async (statut) => {
-        const response = await axios.get(`${API_URL}/demande-achat/statut/${statut}`);
+
+    create: async (bonEntree) => {
+        const response = await api.post('/api/bon-entree', bonEntree);
         return response.data;
     },
-    
-    create: async (demande) => {
-        const response = await axios.post(`${API_URL}/demande-achat/create`, demande);
-        return response.data;
+
+    delete: async (id) => {
+        await api.delete(`/api/bon-entree/${id}`);
     }
 };

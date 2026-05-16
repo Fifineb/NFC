@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Sidebar from '../components/Sidebar'
-import Header from '../components/Header'
-import RapportDetail from '../components/RapportDetail'
-import NouveauRapport from '../components/NouveauRapport'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header from '../../composantes/common/Header'
+import RapportDetail from '../private/RapportDetail'
+import NouveauRapport from '../private/NouveauRapport'
 import { BiDownload, BiFilter, BiPlus, BiSearch, BiFile, BiTrash, BiShow } from 'react-icons/bi'
-import '../styles/rapport.css'
+import '../../assets/styles/rapport.css';
 
 const typeColors = {
   'Consommation': { bg: '#e8f0fe', color: '#1a3a6b' },
@@ -207,4 +207,4 @@ const Rapport = () => {
   )
 }
 
-export default Rapport
+export default Rapport;

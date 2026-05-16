@@ -1,4 +1,3 @@
-// src/composantes/common/Profile.jsx
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { userService } from '../../services/api/userService';

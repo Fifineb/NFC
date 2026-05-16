@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { fournisseurApi } from '../../services/api/fournisseurApi';
 
-
 const Suppliers = () => {
     const { user, hasRole } = useAuth();
     const [fournisseurs, setFournisseurs] = useState([]);
@@ -12,17 +11,16 @@ const Suppliers = () => {
     const [editingFournisseur, setEditingFournisseur] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [formData, setFormData] = useState({
-        raison_sociale: '',
+        raisonSociale: '',
         email: '',
         adresse: '',
         telephone: '',
         actif: true
     });
 
-    const canEdit = hasRole(['ADMINISTRATEUR', 'GESTIONNAIRE']);
+    const canEdit = hasRole && hasRole(['ADMINISTRATEUR', 'GESTIONNAIRE', 'ADMIN', 'MANAGER']);
 
     useEffect(() => {
-        console.log('🔍 Composant Suppliers monté');
         loadFournisseurs();
     }, []);
 
@@ -30,23 +28,41 @@ const Suppliers = () => {
         try {
             setLoading(true);
             setError(null);
-            console.log('📡 Chargement des fournisseurs...');
             
-            // Vérifier le token
             const token = localStorage.getItem('token');
             console.log('🔑 Token présent:', token ? 'Oui' : 'Non');
             
             const data = await fournisseurApi.getAll();
-            console.log('📦 Données reçues:', data);
+            console.log('📦 Données brutes reçues:', data);
             
-            // Vérifier si data est un tableau
+            let cleanData = [];
             if (Array.isArray(data)) {
-                setFournisseurs(data);
-                console.log('✅ Fournisseurs chargés:', data.length);
-            } else {
-                console.error('❌ Les données ne sont pas un tableau:', data);
-                setFournisseurs([]);
+                cleanData = data.map(f => ({
+                    id: f.id,
+                    raisonSociale: f.raisonSociale,
+                    email: f.email,
+                    adresse: f.adresse,
+                    telephone: f.telephone,
+                    actif: f.actif,
+                    dateCreation: f.dateCreation,
+                    dateModification: f.dateModification
+                    // On ne prend PAS commandes pour éviter la récursion
+                }));
+            } else if (data && typeof data === 'object') {
+                // Si c'est un objet unique, on le met dans un tableau
+                cleanData = [{
+                    id: data.id,
+                    raisonSociale: data.raisonSociale,
+                    email: data.email,
+                    adresse: data.adresse,
+                    telephone: data.telephone,
+                    actif: data.actif
+                }];
             }
+            
+            console.log('✅ Données nettoyées:', cleanData);
+            setFournisseurs(cleanData);
+            
         } catch (error) {
             console.error('❌ Erreur chargement:', error);
             setError(error.response?.data?.message || error.message || 'Erreur de chargement');
@@ -57,39 +73,42 @@ const Suppliers = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('📝 Soumission formulaire...');
-        console.log('📊 Données du formulaire:', formData);
         
         try {
+            // ✅ Utiliser raisonSociale (pas raison_sociale)
+            const dataToSend = {
+                raisonSociale: formData.raisonSociale,
+                email: formData.email,
+                adresse: formData.adresse,
+                telephone: formData.telephone,
+                actif: formData.actif
+            };
+            
             if (editingFournisseur) {
-                console.log('🔄 Mise à jour du fournisseur ID:', editingFournisseur.id_f);
-                await fournisseurApi.update(editingFournisseur.id_f, formData);
-                console.log('✅ Mise à jour réussie');
+                await fournisseurApi.update(editingFournisseur.id, dataToSend);
             } else {
-                console.log('➕ Création d\'un nouveau fournisseur');
-                await fournisseurApi.add(formData);
-                console.log('✅ Création réussie');
+                await fournisseurApi.add(dataToSend);
             }
             
-            // Fermer le formulaire
             setShowForm(false);
             setEditingFournisseur(null);
-            setFormData({ raison_sociale: '', email: '', adresse: '', telephone: '', actif: true });
-            
-            // Recharger la liste
+            setFormData({ raisonSociale: '', email: '', adresse: '', telephone: '', actif: true });
             await loadFournisseurs();
             
         } catch (error) {
-            console.error('❌ Erreur lors de l\'enregistrement:', error);
-            alert('Erreur: ' + (error.response?.data?.message || error.message));
+            console.error('❌ Erreur:', error);
+            if (error.response?.status === 403) {
+                alert('Erreur 403: Vous n\'avez pas les droits pour cette action. Vérifiez votre token et vos permissions.');
+            } else {
+                alert('Erreur: ' + (error.response?.data?.message || error.message));
+            }
         }
     };
 
     const handleEdit = (fournisseur) => {
-        console.log('✏️ Édition du fournisseur:', fournisseur);
         setEditingFournisseur(fournisseur);
         setFormData({
-            raison_sociale: fournisseur.raison_sociale || fournisseur.raison_sociale || '',
+            raisonSociale: fournisseur.raisonSociale || '',
             email: fournisseur.email || '',
             adresse: fournisseur.adresse || '',
             telephone: fournisseur.telephone || '',
@@ -101,9 +120,7 @@ const Suppliers = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Supprimer ce fournisseur ?')) {
             try {
-                console.log('🗑️ Suppression du fournisseur ID:', id);
                 await fournisseurApi.delete(id);
-                console.log('✅ Suppression réussie');
                 await loadFournisseurs();
             } catch (error) {
                 console.error('❌ Erreur suppression:', error);
@@ -113,7 +130,7 @@ const Suppliers = () => {
     };
 
     const filteredFournisseurs = fournisseurs.filter(f =>
-        f.raison_sociale?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        f.raisonSociale?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         f.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         f.telephone?.includes(searchTerm)
     );
@@ -154,8 +171,8 @@ const Suppliers = () => {
                                 <label>Raison sociale *</label>
                                 <input
                                     type="text"
-                                    value={formData.raison_sociale}
-                                    onChange={(e) => setFormData({...formData, raison_sociale: e.target.value})}
+                                    value={formData.raisonSociale}
+                                    onChange={(e) => setFormData({...formData, raisonSociale: e.target.value})}
                                     required
                                 />
                             </div>
@@ -220,9 +237,9 @@ const Suppliers = () => {
                             </tr>
                         ) : (
                             filteredFournisseurs.map(fournisseur => (
-                                <tr key={fournisseur.id_f}>
-                                    <td>{fournisseur.id_f}</td>
-                                    <td>{fournisseur.raison_sociale}</td>
+                                <tr key={fournisseur.id}>
+                                    <td>{fournisseur.id}</td>
+                                    <td>{fournisseur.raisonSociale}</td>
                                     <td>{fournisseur.email || '-'}</td>
                                     <td>{fournisseur.telephone || '-'}</td>
                                     <td>{fournisseur.adresse || '-'}</td>
@@ -231,7 +248,7 @@ const Suppliers = () => {
                                             <button onClick={() => handleEdit(fournisseur)} className="btn-edit" title="Modifier">
                                                 ✏️
                                             </button>
-                                            <button onClick={() => handleDelete(fournisseur.id_f)} className="btn-delete" title="Supprimer">
+                                            <button onClick={() => handleDelete(fournisseur.id)} className="btn-delete" title="Supprimer">
                                                 🗑️
                                             </button>
                                         </td>

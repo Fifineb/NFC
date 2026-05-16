@@ -9,19 +9,35 @@ const api = axios.create({
     },
 });
 
-// Service pour les régions
-export const regionService = {
-    getAll: () => api.get('/region/getAll'),
-    getById: (id) => api.get(`/region/getById/${id}`),
-    add: (data) => api.post('/region/add', data),
-    update: (id, data) => api.put(`/region/update/${id}`, data),
-    delete: (id) => api.delete(`/region/delete/${id}`),
-};
+// ✅ Intercepteur pour ajouter le token JWT à toutes les requêtes
+api.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        console.log(`🚀 ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
-// Service pour les magasins
-export const magasinService = {
-    getAll: () => api.get('/magasin/getAll'),
-    add: (data) => api.post('/magasin/add', data),
-};
+// ✅ Intercepteur pour gérer les erreurs 401 (token expiré)
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response?.status === 401) {
+            console.error('🔒 Token expiré ou invalide, déconnexion...');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
 
 export default api;

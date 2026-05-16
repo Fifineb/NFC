@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageContext } from '../../contexts/LanguageContext';
-import './LanguageSwitcher.css';
+import { LanguageContext } from '../../context/LanguageContext';
+//import './LanguageSwitcher.css';
 
 const LanguageSwitcher = () => {
   const { language, changeLanguage } = useContext(LanguageContext);

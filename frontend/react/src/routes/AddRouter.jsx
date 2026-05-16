@@ -10,7 +10,7 @@ import Stock from '../Pages/private/Stock';
 import Entery from '../Pages/private/Entery';
 import Exits from '../Pages/private/Exits';
 import Suppliers from '../Pages/private/Suppliers';
-import Raports from '../Pages/private/Raports';
+import Rapport from '../Pages/private/Rapport';
 import Settings from '../Pages/private/Settings';
 import Adminonly from '../Pages/private/Adminonly';
 
@@ -24,7 +24,7 @@ const AppRoutes = () => {
             <Route path="/entery" element={<ProtectedRoute><Entery /></ProtectedRoute>} />
             <Route path="/exits" element={<ProtectedRoute><Exits /></ProtectedRoute>} />
             <Route path="/suppliers" element={<ProtectedRoute><Suppliers /></ProtectedRoute>} />
-            <Route path="/raports" element={<ProtectedRoute><Raports /></ProtectedRoute>} />
+            <Route path="/rapports" element={<ProtectedRoute><Rapport /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute adminOnly><Adminonly /></ProtectedRoute>} />
         </Routes>

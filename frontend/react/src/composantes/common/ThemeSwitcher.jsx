@@ -1,10 +1,9 @@
-// src/composantes/common/ThemeSwitcher.jsx
 import React, { useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
 const ThemeSwitcher = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme, toggleTheme } = useTheme();
     const { t } = useTranslation();
 
     return (

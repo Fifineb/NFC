@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BiX, BiPlus } from 'react-icons/bi'
-import '../styles/rapport.css'
+import '../../assets/styles/rapport.css';
 
 const TYPES = ['Consommation', 'Commandes', 'Entrées', 'Sorties', 'Stock']
 

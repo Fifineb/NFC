@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';  // ← AJOUTER CETTE LIGNE
 import { regionApi } from '../../services/api/regionApi';
 
+
 const Regions = () => {
     const { user, hasRole } = useAuth();
     const [regions, setRegions] = useState([]);
