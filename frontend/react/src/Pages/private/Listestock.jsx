@@ -5,18 +5,12 @@ import '../../assets/styles/main.css'
 
 const Listestock = () => {
   return (
-    <div className="app-wrapper">
-      <Sidebar />
-
-      <div className="Home">
-        <Header />
-
+ 
         <div className="content-row">
           
         </div>
 
-        </div>
-      </div>
+       
   
   )
 }

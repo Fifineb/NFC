@@ -7,11 +7,7 @@ import '../../assets/styles/fields.css'
 
 const Message = () => {
   return (
-    <div className="app-wrapper">
-      <Sidebar />
-
-      <div className="Home">
-        <Header />
+    
 
           <div className="message-form">
             <form >
@@ -37,8 +33,7 @@ const Message = () => {
           </form>
           </div>
 
-        </div>
-        </div>
+     
       
   
   )

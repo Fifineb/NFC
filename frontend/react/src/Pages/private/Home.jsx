@@ -8,11 +8,9 @@ import '../../assets/styles/main.css'
 
 const Home = () => {
   return (
-    <div className="app-wrapper">
-      <Sidebar />
+    
+    
 
-      <div className="Home">
-        <Header />
 
         <div className="content-row">
           <div className="left">
@@ -24,8 +22,7 @@ const Home = () => {
             <TodoList />
           </div>
         </div>
-      </div>
-    </div>
+   
   )
 }
 

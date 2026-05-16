@@ -62,13 +62,11 @@ function AppRoutes() {
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
                     <Route path="/rapports" element={<Rapport />} />
-                    <Route path="/stock" element={<BonEntree />} />
-                    <Route path="/regions" element={<Regions />} />
+                    <Route path="/bon-entree" element={<BonEntree />} />                    <Route path="/regions" element={<Regions />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<Listestock />} />
                     <Route path="/message" element={<Message />} />
-                    <Route path="/rapport" element={<Rapport />} />
                 </Routes>
             </Layout>
         );
@@ -83,13 +81,12 @@ function AppRoutes() {
                     <Route path="/manager/dashboard" element={<ManagerDashboard />} />
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/rapports" element={<Rapport />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<Listestock />} />
                     <Route path="/message" element={<Message />} />
-                    <Route path="/rapport" element={<Rapport />} />
                 </Routes>
             </Layout>
         );
@@ -126,7 +123,7 @@ function AppRoutes() {
                     <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<Listestock />} />
                     <Route path="/message" element={<Message />} />
-                    <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/rapports" element={<Rapport />} />
                 </Routes>
             </Layout>
         );

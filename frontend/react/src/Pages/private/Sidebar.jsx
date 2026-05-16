@@ -35,7 +35,7 @@ const Sidebar = () => {
           {open && "Messages"}
         </Link>
 
-        <Link to="/rapport" className="item">
+        <Link to="/rapports" className="item">
           <BiSolidReport className='icon'/> 
           {open && "Rapport"}
         </Link>
