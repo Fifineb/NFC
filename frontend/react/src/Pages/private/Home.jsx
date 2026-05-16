@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 import Header from './Header'
 import Calendar from './Calendar'
 import TodoList from './TodoList'
-import '../styles/main.css'
+import '../../assets/styles/main.css'
 
 const Home = () => {
   return (

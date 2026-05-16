@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import Header from './Header'
-import '../styles/main.css'
+import '../../assets/styles/main.css'
 
 const Listestock = () => {
   return (

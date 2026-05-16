@@ -1,8 +1,8 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import Header from './Header'
-import '../styles/main.css'
-import '../styles/fields.css'
+import '../../assets/styles/main.css'
+import '../../assets/styles/fields.css'
 
 
 const Message = () => {

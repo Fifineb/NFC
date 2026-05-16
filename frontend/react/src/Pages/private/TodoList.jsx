@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BiCheck, BiPlus, BiChevronDown, BiChevronRight, BiTrash } from 'react-icons/bi'
-import '../styles/menu.css'
+import '../../assets/styles/menu.css'
 
 const TodoList = () => {
   const [todos,    setTodos]    = useState([])

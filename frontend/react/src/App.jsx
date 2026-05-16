@@ -25,11 +25,9 @@ import Contact from './Pages/public/Contact';
 import NousContact from './Pages/public/Nouscontacter';
 import Register from './Pages/public/Register';
 import ScrollToTop from './composantes/common/ScrollToTop';
-import Rapport from './Pages/private/Rapport';
 import HomeUSER from './Pages/private/Home';
 import Listestock from './Pages/private/Listestock'
 import Message from './Pages/private/Message'
-
 
 import './assets/styles/global.css';
 import './i18n';

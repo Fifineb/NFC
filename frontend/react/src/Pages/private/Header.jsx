@@ -1,8 +1,8 @@
 import React from 'react'
 import { BiBell, BiSearch, BiCog } from 'react-icons/bi'
-import logo from '../assets/Baggaznaftal.webp'
+import logo from '../../assets/images/Baggaznaftal.webp'
 import { Link } from 'react-router-dom'
-import '../styles/main.css'
+import '../../assets/styles/main.css'
 
 
 const Header = () => {
