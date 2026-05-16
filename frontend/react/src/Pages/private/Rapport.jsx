@@ -67,10 +67,7 @@ const Rapport = () => {
     const rapport = rapports.find(r => r.id === detailId)
     if (!rapport) { setDetailId(null); return null }
     return (
-      <div className="app-wrapper">
-        <Sidebar />
-        <div className="Home">
-          <Header />
+      
           <div className="content-row">
             <RapportDetail
               rapport={rapport}
@@ -80,17 +77,13 @@ const Rapport = () => {
               onDelete={() => handleDelete(rapport.id)}
             />
           </div>
-        </div>
-      </div>
+      
     )
   }
 
   // ── Vue liste ──
   return (
-    <div className="app-wrapper">
-      <Sidebar />
-      <div className="Home">
-        <Header />
+    <>
         <div className="content-row">
           <div className="rapport-page">
 
@@ -194,8 +187,6 @@ const Rapport = () => {
 
           </div>
         </div>
-      </div>
-
       {/* Modal */}
       {showModal && (
         <NouveauRapport
@@ -203,7 +194,7 @@ const Rapport = () => {
           onAdd={handleAdd}
         />
       )}
-    </div>
+   </> 
   )
 }
 

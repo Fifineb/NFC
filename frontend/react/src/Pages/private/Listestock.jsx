@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useMemo } from 'react'
 import Sidebar from './Sidebar'
 import Header  from './Header'
@@ -260,12 +261,20 @@ const ListeStock = () => {
       onUpdateSeuil={updateSeuil}
     />
   )
+=======
+import React from 'react'
+import Sidebar from './Sidebar'
+import Header from './Header'
+import '../../assets/styles/main.css'
+>>>>>>> babdf1748f133bab48d53d8de7a92e72cebcabba
 
+const Listestock = () => {
   return (
     <div className="app-wrapper">
       <Sidebar />
       <div className="Home">
         <Header />
+ 
         <div className="content-row">
           <div className="stock-page">
 
@@ -333,6 +342,8 @@ const ListeStock = () => {
         </div>
       </div>
     </div>
+       
+  
   )
 }
 

@@ -35,6 +35,9 @@ const Sidebar = () => {
           {open && "Messages"}
         </Link>
 
+<<<<<<< HEAD
+        <Link to="/rapports" className="item">
+=======
         <Link to="/adduser" className="item">
           <BiUserPlus className='icon'/> 
           {open && "Add User"}
@@ -46,6 +49,7 @@ const Sidebar = () => {
         </Link>
 
         <Link to="/rapport" className="item">
+>>>>>>> 6787b6b232e37efca7cf02dec004efe5043cbe83
           <BiSolidReport className='icon'/> 
           {open && "Rapport"}
         </Link>
