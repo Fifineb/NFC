@@ -25,6 +25,10 @@ import Contact from './Pages/public/Contact';
 import NousContact from './Pages/public/Nouscontacter';
 import Register from './Pages/public/Register';
 import ScrollToTop from './composantes/common/ScrollToTop';
+import Rapport from './Pages/private/Rapport';
+import HomeUSER from './Pages/private/Home';
+import Listestock from './Pages/private/Listestock'
+import Message from './Pages/private/Message'
 
 
 import './assets/styles/global.css';
@@ -63,6 +67,10 @@ function AppRoutes() {
                     <Route path="/stock" element={<BonEntree />} />
                     <Route path="/regions" element={<Regions />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/home" element={<HomeUSER />} />
+                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/rapport" element={<Rapport />} />
                 </Routes>
             </Layout>
         );
@@ -80,6 +88,10 @@ function AppRoutes() {
                     <Route path="/rapport" element={<Rapport />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/home" element={<HomeUSER />} />
+                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/rapport" element={<Rapport />} />
                 </Routes>
             </Layout>
         );
@@ -95,6 +107,9 @@ function AppRoutes() {
                     <Route path="/produits" element={<Produits readOnly />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/home" element={<HomeUSER />} />
+                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/message" element={<Message />} />
                 </Routes>
             </Layout>
         );
@@ -110,6 +125,10 @@ function AppRoutes() {
                     <Route path="/produits" element={<Produits readOnly />} />
                     <Route path="/rapports" element={<Rapport />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/home" element={<HomeUSER />} />
+                    <Route path="/listestock" element={<Listestock />} />
+                    <Route path="/message" element={<Message />} />
+                    <Route path="/rapport" element={<Rapport />} />
                 </Routes>
             </Layout>
         );
