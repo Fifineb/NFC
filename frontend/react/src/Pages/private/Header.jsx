@@ -26,7 +26,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="logout">
-          <Link to="/logout">
+          <Link to="Page/public/Home">
             <BiLogOut className="icon" />
           </Link>
         </div>

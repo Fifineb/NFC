@@ -70,11 +70,8 @@ function AppRoutes() {
                     <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
-<<<<<<< HEAD
                     <Route path="/rapport" element={<Rapport />} />
                     <Route path="/notifications" element={<Notifications />} />
-=======
->>>>>>> babdf1748f133bab48d53d8de7a92e72cebcabba
                 </Routes>
             </Layout>
         );
@@ -95,11 +92,8 @@ function AppRoutes() {
                     <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
-<<<<<<< HEAD
                     <Route path="/rapport" element={<Rapport />} />
                     <Route path="/notifications" element={<Notifications />} />
-=======
->>>>>>> babdf1748f133bab48d53d8de7a92e72cebcabba
                 </Routes>
             </Layout>
         );

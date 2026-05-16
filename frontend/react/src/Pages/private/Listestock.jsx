@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useMemo } from 'react'
 import Sidebar from './Sidebar'
 import Header  from './Header'
@@ -6,6 +5,7 @@ import StockDetail from './StockDetail'
 import { BiSearch, BiSortAlt2, BiChevronDown, BiChevronUp,
          BiPackage, BiError, BiInfoCircle, BiShow, BiEdit, BiCheck, BiX } from 'react-icons/bi'
 import '../../assets/styles/listestock.css'
+
 
 const UNITES = ['Alger', 'Mascara', 'Batna']
 
@@ -261,20 +261,12 @@ const ListeStock = () => {
       onUpdateSeuil={updateSeuil}
     />
   )
-=======
-import React from 'react'
-import Sidebar from './Sidebar'
-import Header from './Header'
-import '../../assets/styles/main.css'
->>>>>>> babdf1748f133bab48d53d8de7a92e72cebcabba
 
-const Listestock = () => {
   return (
     <div className="app-wrapper">
       <Sidebar />
       <div className="Home">
         <Header />
- 
         <div className="content-row">
           <div className="stock-page">
 
@@ -342,8 +334,6 @@ const Listestock = () => {
         </div>
       </div>
     </div>
-       
-  
   )
 }
 
