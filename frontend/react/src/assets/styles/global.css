@@ -619,6 +619,68 @@ html {
   margin-bottom: 8px;
 }
 
+
+
+
+
+/*mode sombre*/
+/* Mode sombre */
+body.dark-theme {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-theme .navbar,
+body.dark-theme .header,
+body.dark-theme .app-header {
+    background-color: #16213e;
+    border-color: #2c3e50;
+}
+
+body.dark-theme .sidebar,
+body.dark-theme .app-sidebar {
+    background-color: #0f0f23;
+}
+
+body.dark-theme .service-card,
+body.dark-theme .profile-card-simple {
+    background-color: #1e2a3a;
+    color: #e0e0e0;
+}
+
+body.dark-theme input,
+body.dark-theme textarea {
+    background-color: #2c3e50;
+    border-color: #3d5a73;
+    color: white;
+}
+
+.theme-switcher {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+}
+
+.theme-switcher:hover {
+    background: #f3f4f6;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive Société */
 @media (max-width: 1024px) {
   .societe {
@@ -895,12 +957,7 @@ textarea {
   resize: vertical;
 }
 
-/* ERREURS */
-span {
-  color: #ff4d4d;
-  font-size: 14px;
-  margin-top: 5px;
-}
+
 
 /* BOUTON */
 button {

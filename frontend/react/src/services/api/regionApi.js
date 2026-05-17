@@ -1,14 +1,28 @@
-import axios from "axios";
-
-const API = "http://localhost:8081/api/region";
+import api from './axiosConfig';
 
 export const regionApi = {
-  getAll: () => axios.get(`${API}/getAll`).then(res => res.data),
-
-  add: (data) => axios.post(`${API}/add`, data).then(res => res.data),
-
-  delete: (id) => axios.delete(`${API}/delete/${id}`).then(res => res.data),
-
-  update: (id, data) =>
-    axios.put(`${API}/update/${id}`, data).then(res => res.data),
+    getAll: async () => {
+        const response = await api.get('/api/region/getAll');
+        return response.data;
+    },
+    
+    getById: async (id) => {
+        const response = await api.get(`/api/region/get/${id}`);
+        return response.data;
+    },
+    
+    add: async (data) => {
+        const response = await api.post('/api/region/add', data);
+        return response.data;
+    },
+    
+    update: async (id, data) => {
+        const response = await api.put(`/api/region/update/${id}`, data);
+        return response.data;
+    },
+    
+    delete: async (id) => {
+        const response = await api.delete(`/api/region/delete/${id}`);
+        return response.data;
+    }
 };

@@ -19,7 +19,7 @@ import Suppliers from './Pages/private/Suppliers';
 import BonEntree from './Pages/private/BonEntree';
 import Rapport from './Pages/private/Rapport';
 import Regions from './Pages/private/Regions';
-import Profile from './composantes/common/Profile';
+import Profile from './Pages/private/Profile';
 import Home from './Pages/public/Home';
 import Contact from './Pages/public/Contact';
 import NousContact from './Pages/public/Nouscontacter';

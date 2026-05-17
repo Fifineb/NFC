@@ -1,0 +1,273 @@
+/* ========================= */
+/* LAYOUT MODERNE */
+/* ========================= */
+
+.layout-container{
+  display:flex;
+  min-height:100vh;
+  background:#f4f7fb;
+}
+
+/* ========================= */
+/* SIDEBAR */
+/* ========================= */
+
+.sidebar-modern{
+  width:260px;
+  background:#0f172a;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  padding:20px;
+  position:fixed;
+  left:0;
+  top:0;
+  height:100vh;
+}
+
+.sidebar-logo{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:40px;
+  text-align:center;
+  color:white;
+}
+
+.sidebar-nav{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.sidebar-link{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#d1d5db;
+  transition:0.3s;
+  font-size:15px;
+  font-weight:500;
+}
+
+.sidebar-link:hover{
+  background:#1e293b;
+  color:white;
+  transform:translateX(4px);
+}
+
+.sidebar-link.active{
+  background:#2563eb;
+  color:white;
+}
+
+/* ========================= */
+/* MAIN */
+/* ========================= */
+
+.main-section{
+  margin-left:260px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ========================= */
+/* TOPBAR */
+/* ========================= */
+
+.topbar{
+  height:80px;
+  background:white;
+  
+  box-sizing:border-box;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 30px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.topbar-left{
+  flex:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:30px;
+  font-weight:600;
+  color:#0f172a;
+}
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  position:relative;
+}
+
+/* ========================= */
+/* PROFILE */
+/* ========================= */
+
+.profile-button{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:none;
+  background:none;
+  cursor:pointer;
+  padding:10px;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.profile-button:hover{
+  background:#f3f4f6;
+}
+
+.profile-avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#2563eb;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.profile-avatar.big{
+  width:60px;
+  height:60px;
+  font-size:24px;
+}
+
+.profile-info{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.profile-info span{
+  color:#111827;
+  font-weight:600;
+}
+
+.profile-info small{
+  color:#6b7280;
+}
+
+/* ========================= */
+/* DROPDOWN */
+/* ========================= */
+
+.profile-dropdown{
+  position:absolute;
+  top:85px;
+  right:0;
+  width:320px;
+  background:white;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.profile-dropdown-header{
+  background:#eff6ff;
+  padding:20px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.profile-dropdown-header h4{
+  margin:0;
+  color:#111827;
+}
+
+.profile-dropdown-header p{
+  margin:4px 0 0;
+  color:#6b7280;
+  font-size:14px;
+}
+
+.profile-dropdown-content{
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.dropdown-item{
+  padding:12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#111827;
+  background:#f9fafb;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.dropdown-item:hover{
+  background:#f3f4f6;
+}
+
+.logout-button{
+  border:none;
+  background:#dc2626;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.logout-button:hover{
+  background:#b91c1c;
+}
+
+/* ========================= */
+/* CONTENT */
+/* ========================= */
+
+.page-content{
+  padding:30px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:768px){
+
+  .sidebar-modern{
+    width:80px;
+    padding:15px 10px;
+  }
+
+  .sidebar-logo{
+    font-size:18px;
+  }
+
+  .sidebar-link span:last-child{
+    display:none;
+  }
+
+  .main-section{
+    margin-left:80px;
+  }
+
+  .profile-info{
+    display:none;
+  }
+
+}
