@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -26,118 +25,118 @@ import NousContact from './Pages/public/Nouscontacter';
 import Register from './Pages/public/Register';
 import ScrollToTop from './composantes/common/ScrollToTop';
 import HomeUSER from './Pages/private/Home';
-import ListeStock from './Pages/private/ListeStock'
-import Message from './Pages/private/Message'
-import Notifications from './Pages/private/Notifications'
+import ListeStock from './Pages/private/ListeStock';
+import Message from './Pages/private/Message';
+import Notifications from './Pages/private/Notifications';
 
 import './assets/styles/global.css';
 import './i18n';
 
 function AppRoutes() {
     const { user, loading } = useAuth();
-    
+
     if (loading) return <LoadingSpinner />;
-    
+
+    // Pages publiques (non connecté)
     if (!user) {
         return (
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/Contact" element={<Contact />} />
-                <Route path="/NousContact" element={<NousContact />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/nous-contacter" element={<NousContact />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<Navigate to="/" />} />
-                <Route path="/notifications" element={<Notifications />} />
-
             </Routes>
         );
     }
-    
+
     const role = user.role;
-    
+
     // Routes ADMIN
     if (role === 'ADMINISTRATEUR') {
         return (
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/admin/dashboard" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/admin/dashboard" element={<AdminDashboard />} />
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/rapports" element={<Rapport />} />
-                    <Route path="/bon-entree" element={<BonEntree />} />                    <Route path="/regions" element={<Regions />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/home" element={<HomeUSER />} />
+                    <Route path="/bon-entree" element={<BonEntree />} />
+                    <Route path="/regions" element={<Regions />} />
                     <Route path="/listestock" element={<ListeStock />} />
-                    <Route path="/message" element={<Message />} />
                     <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/message" element={<Message />} />
                     <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<Navigate to="/home" />} />
                 </Routes>
             </Layout>
         );
     }
-    
+
     // Routes GESTIONNAIRE
     if (role === 'GESTIONNAIRE') {
         return (
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/manager/dashboard" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/manager/dashboard" element={<ManagerDashboard />} />
                     <Route path="/produits" element={<Produits />} />
                     <Route path="/fournisseurs" element={<Suppliers />} />
-                    <Route path="/rapports" element={<Rapport />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<ListeStock />} />
-                    <Route path="/message" element={<Message />} />
                     <Route path="/rapport" element={<Rapport />} />
+                    <Route path="/message" element={<Message />} />
                     <Route path="/notifications" element={<Notifications />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<Navigate to="/home" />} />
                 </Routes>
             </Layout>
         );
     }
-    
+
     // Routes MAGASINIER
     if (role === 'MAGASINIER') {
         return (
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/stocker/dashboard" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/stocker/dashboard" element={<StockerDashboard />} />
                     <Route path="/produits" element={<Produits readOnly />} />
                     <Route path="/bon-entree" element={<BonEntree />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<ListeStock />} />
                     <Route path="/message" element={<Message />} />
                     <Route path="/notifications" element={<Notifications />} />
-                    
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<Navigate to="/home" />} />
                 </Routes>
             </Layout>
         );
     }
-    
+
     // Routes SUPERVISEUR
     if (role === 'SUPERVISEUR') {
         return (
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Navigate to="/supervisor/dashboard" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/supervisor/dashboard" element={<SupervisorDashboard />} />
                     <Route path="/produits" element={<Produits readOnly />} />
-                    <Route path="/rapports" element={<Rapport />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/home" element={<HomeUSER />} />
                     <Route path="/listestock" element={<ListeStock />} />
+                    <Route path="/rapport" element={<Rapport />} />
                     <Route path="/message" element={<Message />} />
-                    <Route path="/rapports" element={<Rapport />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<Navigate to="/home" />} />
                 </Routes>
             </Layout>
         );
     }
-    
+
     return <Navigate to="/login" />;
 }
 
@@ -145,7 +144,7 @@ function App() {
     return (
         <BrowserRouter>
             <ThemeProvider>
-                <LanguageProvider>  
+                <LanguageProvider>
                     <AuthProvider>
                         <AppRoutes />
                         <ScrollToTop />
