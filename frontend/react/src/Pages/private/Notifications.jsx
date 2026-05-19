@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react'
-import Sidebar from '../components/Sidebar'
-import Header  from '../components/Header'
+import Sidebar from './Sidebar'
+import Header  from './Header'
 import {
   BiError, BiInfoCircle, BiCheckCircle, BiTrash,
   BiFilter, BiSearch, BiRefresh, BiBell, BiTime
 } from 'react-icons/bi'
-import '../styles/notifications.css'
+import '../../assets/styles/notifications.css'
 
 // ── Données simulées (à remplacer par API) ──────────────────────
 const alertesInit = [

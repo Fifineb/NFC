@@ -5,7 +5,7 @@ import {
   BiArrowBack, BiPlus, BiTrash, BiEdit, BiSave,
   BiX, BiPackage, BiCalendar, BiChevronDown, BiChevronUp
 } from 'react-icons/bi'
-import '../styles/listestock.css'
+import '../../assets/styles/listestock.css'
 
 const calcStock = (s) => s.initial + s.entrees - s.sorties
 const calcSacs  = (a) => Math.floor(a / 25)
