@@ -3,12 +3,16 @@ package com.arjuncodes.isersystem.controller;
 import com.arjuncodes.isersystem.model.Role;
 import com.arjuncodes.isersystem.model.Utilisateur;
 import com.arjuncodes.isersystem.service.UtilisateurService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
+import com.arjuncodes.isersystem.security.JwtUtil;  
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +28,11 @@ public class UtilisateurController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil; 
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> create(@RequestBody Utilisateur utilisateur) {
-
         Map<String, Object> response = new HashMap<>();
 
         String rawPassword = utilisateur.getMotDePasse();
@@ -53,7 +58,6 @@ public class UtilisateurController {
 
     @GetMapping("/{id_user}")
     public ResponseEntity<Map<String, Object>> getById(@PathVariable int id_user) {
-
         Map<String, Object> response = new HashMap<>();
         Utilisateur utilisateur = utilisateurService.getUtilisateurById(id_user);
 
@@ -71,9 +75,7 @@ public class UtilisateurController {
     @PutMapping("/{id_user}")
     public ResponseEntity<Map<String, Object>> update(@PathVariable int id_user,
                                                       @RequestBody Utilisateur details) {
-
         Map<String, Object> response = new HashMap<>();
-
 
         if (details.getMotDePasse() != null && !details.getMotDePasse().isEmpty()) {
             details.setMotDePasse(passwordEncoder.encode(details.getMotDePasse()));
@@ -96,7 +98,6 @@ public class UtilisateurController {
 
     @DeleteMapping("/{id_user}")
     public ResponseEntity<Map<String, Object>> delete(@PathVariable int id_user) {
-
         Map<String, Object> response = new HashMap<>();
         utilisateurService.deleteUtilisateur(id_user);
 
@@ -109,7 +110,6 @@ public class UtilisateurController {
     @GetMapping("/{id_user}/permissions/{action}")
     public ResponseEntity<Map<String, Object>> checkPermission(@PathVariable int id_user,
                                                                @PathVariable String action) {
-
         Map<String, Object> response = new HashMap<>();
 
         Utilisateur utilisateur = utilisateurService.getUtilisateurById(id_user);
@@ -130,8 +130,124 @@ public class UtilisateurController {
         return ResponseEntity.ok(response);
     }
 
-    private boolean hasPermission(Role role, String action) {
+    // ✅ NOUVEAU ENDPOINT - Récupérer l'utilisateur connecté
+    @GetMapping("/me")
+    public ResponseEntity<Map<String, Object>> getCurrentUser(@AuthenticationPrincipal String email) {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            Utilisateur user = utilisateurService.getUtilisateurByEmail(email);
+            response.put("success", true);
+            response.put("id", user.getId());
+            response.put("email", user.getEmail());
+            response.put("nom", user.getNom());
+            response.put("prenom", user.getPrenom());
+            response.put("role", user.getRole());
+            response.put("telephone", user.getTelephone());
+            response.put("actif", user.isActif());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "Utilisateur non trouvé");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
 
+    //  Mettre à jour le profil
+@PutMapping("/profile")
+    public ResponseEntity<Map<String, Object>> updateProfile(@RequestBody Map<String, String> updates,
+                                                              HttpServletRequest request) {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                response.put("success", false);
+                response.put("message", "Token manquant ou invalide");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+            
+            String token = authHeader.substring(7);
+            
+            // ✅ Appel sur l'instance injectée (pas statique)
+            String email = jwtUtil.extractEmail(token);
+            
+            System.out.println("📧 Email récupéré: " + email);
+            
+            Utilisateur user = utilisateurService.getUtilisateurByEmail(email);
+            
+            if (user == null) {
+                response.put("success", false);
+                response.put("message", "Utilisateur non trouvé pour l'email: " + email);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+            }
+            
+            // Mise à jour des champs
+            if (updates.containsKey("nom")) {
+                user.setNom(updates.get("nom"));
+            }
+            if (updates.containsKey("prenom")) {
+                user.setPrenom(updates.get("prenom"));
+            }
+            if (updates.containsKey("email")) {
+                user.setEmail(updates.get("email"));
+            }
+            if (updates.containsKey("telephone")) {
+                user.setTelephone(updates.get("telephone"));
+            }
+            
+            utilisateurService.saveUtilisateur(user);
+            
+            response.put("success", true);
+            response.put("message", "Profil mis à jour avec succès");
+            response.put("user", Map.of(
+                "id", user.getId(),
+                "nom", user.getNom(),
+                "prenom", user.getPrenom(),
+                "email", user.getEmail(),
+                "telephone", user.getTelephone(),
+                "role", user.getRole()
+            ));
+            
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+        // Changer le mot de passe
+    @PutMapping("/change-password")
+    public ResponseEntity<Map<String, Object>> changePassword(@RequestBody Map<String, String> passwords, 
+                                                               @AuthenticationPrincipal String email) {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            Utilisateur user = utilisateurService.getUtilisateurByEmail(email);
+            
+            if (!passwordEncoder.matches(passwords.get("currentPassword"), user.getMotDePasse())) {
+                response.put("success", false);
+                response.put("message", "Mot de passe actuel incorrect");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+            
+            user.setMotDePasse(passwordEncoder.encode(passwords.get("newPassword")));
+            utilisateurService.saveUtilisateur(user);
+            
+            response.put("success", true);
+            response.put("message", "Mot de passe changé avec succès");
+            return ResponseEntity.ok(response);
+            
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+    private boolean hasPermission(Role role, String action) {
         if (role == null) return false;
 
         Map<Role, Set<String>> permissionsMap = new HashMap<>();

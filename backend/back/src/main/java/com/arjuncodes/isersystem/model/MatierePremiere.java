@@ -51,6 +51,7 @@ public class MatierePremiere {
             joinColumns = @JoinColumn(name = "matiere_id"),
             inverseJoinColumns = @JoinColumn(name = "categorie_id")
     )
+    @JsonIgnore 
     private List<Categorie> categories = new ArrayList<>();
 
     @OneToMany(mappedBy = "matierePremiere", cascade = CascadeType.ALL)

@@ -1,3 +1,4 @@
+// SecurityConfig.java - Version complète et corrigée
 package com.arjuncodes.isersystem.security;
 
 import org.springframework.context.annotation.Bean;
@@ -28,20 +29,16 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
-    // ================= PASSWORD =================
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // ================= AUTH MANAGER =================
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // ================= CORS =================
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -55,7 +52,6 @@ public class SecurityConfig {
         return source;
     }
 
-    // ================= SECURITY =================
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -65,66 +61,61 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             
             .authorizeHttpRequests(auth -> auth
-                // ================= OPTIONS CORS =================
+                // ================= 1. OPTIONS CORS =================
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 
-                // ================= PUBLIC =================
+                // ================= 2. PUBLIC =================
                 .requestMatchers("/", "/h2-console/**").permitAll()
                 
-                // ================= AUTHENTIFICATION =================
+                // ================= 3. AUTHENTIFICATION =================
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll()
                 
-                // ================= SWAGGER =================
+                // ================= 4. SWAGGER =================
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 
-                // ================= FOURNISSEURS =================
+                // ================= 5. FOURNISSEURS =================
                 .requestMatchers("/api/fournisseur/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
                 
-                // ================= MATIÈRES PREMIÈRES / PRODUITS =================
-                .requestMatchers("/api/matiere-premiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                .requestMatchers("/api/produits/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                .requestMatchers("/matiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
+                // ================= 6. MATIÈRES PREMIÈRES =================
+                .requestMatchers("/api/matiere-premiere/**").permitAll()
                 
-                // ================= STOCK =================
-                .requestMatchers("/api/stock/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/stock/augmenter/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/stock/diminuer/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
+                // ================= 7. STOCK =================
+                .requestMatchers("/api/stock/**").permitAll()
+
+                // ================= 8. MOUVEMENTS =================
+                .requestMatchers("/api/mouvements/**").permitAll()
                 
-                // ================= BONS =================
+                // ================= 9. BONS =================
                 .requestMatchers("/api/bon-entree/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
                 .requestMatchers("/api/bon-sortie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
                 .requestMatchers("/api/bon-consommation/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
                 
-                // ================= COMMANDES =================
+                // ================= 10. COMMANDES =================
                 .requestMatchers("/api/commandes/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
                 
-                // ================= MOUVEMENTS =================
-                .requestMatchers("/api/mouvements/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                
-                // ================= ALERTES =================
+                // ================= 11. ALERTES =================
                 .requestMatchers("/api/alerte/**").hasAnyRole("ADMINISTRATEUR", "SUPERVISEUR")
                 
-                // ================= RAPPORTS =================
+                // ================= 12. RAPPORTS =================
                 .requestMatchers("/api/rapports/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR")
                 
-                // ================= RÉGIONS =================
+                // ================= 13. RÉGIONS =================
                 .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
                 
-                // ================= UTILISATEURS =================
-                .requestMatchers("/api/utilisateurs/**").hasRole("ADMINISTRATEUR")
-                .requestMatchers("/api/utilisateurs/me").authenticated()
-                
-                // ================= CATÉGORIES =================
+                // ================= 14. CATÉGORIES =================
                 .requestMatchers("/api/categorie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
                 
-                // ================= MAGASINS =================
+                // ================= 15. MAGASINS =================
                 .requestMatchers("/api/magasin/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
                 
-                // ================= RÉGIONS =================
-                .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
+                // ================= 16. UTILISATEURS =================
+                .requestMatchers("/api/utilisateurs/me").authenticated()
+                .requestMatchers("/api/utilisateurs/profile").authenticated()
+                .requestMatchers("/api/utilisateurs/change-password").authenticated()
+                .requestMatchers("/api/utilisateurs/**").hasRole("ADMINISTRATEUR")
                 
-                // ================= TOUT AUTRE ENDPOINT =================
+                // ================= 17. TOUT LE RESTE =================
                 .anyRequest().authenticated()
             )
             

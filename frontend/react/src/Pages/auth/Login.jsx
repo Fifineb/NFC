@@ -25,12 +25,12 @@ export default function LoginRegister() {
   const navigate = useNavigate();
 
   // ================= LOGIN =================
-  const handleLogin = async (e) => {
+const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !motDePasse) {
-      setError("Veuillez remplir tous les champs");
-      return;
+        setError("Veuillez remplir tous les champs");
+        return;
     }
 
     setLoading(true);
@@ -38,29 +38,46 @@ export default function LoginRegister() {
     setSuccess("");
 
     try {
-      const result = await login({
-        email,
-        password: motDePasse,
-      });
+        const result = await login({
+            email,
+            password: motDePasse,
+        });
 
-      console.log("Résultat login:", result);
+        console.log("Résultat login:", result);
 
-      if (result.success) {
-        setSuccess("Connexion réussie");
-
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-      } else {
-        setError(result.error || "Email ou mot de passe incorrect");
-      }
+        if (result.success) {
+            setSuccess("Connexion réussie");
+            
+            //  Redirection selon le rôle
+            const role = result.user?.role;
+            setTimeout(() => {
+                switch(role) {
+                    case 'ADMINISTRATEUR':
+                        navigate('/admin/dashboard');
+                        break;
+                    case 'GESTIONNAIRE':
+                        navigate('/manager/dashboard');
+                        break;
+                    case 'MAGASINIER':
+                        navigate('/stocker/dashboard');
+                        break;
+                    case 'SUPERVISEUR':
+                        navigate('/supervisor/dashboard');
+                        break;
+                    default:
+                        navigate('/dashboard');
+                }
+            }, 1000);
+        } else {
+            setError(result.error || "Email ou mot de passe incorrect");
+        }
     } catch (err) {
-      console.error("Erreur login:", err);
-      setError("Erreur de connexion au serveur");
+        console.error("Erreur login:", err);
+        setError("Erreur de connexion au serveur");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   // ================= REGISTER =================
   const handleRegister = async (e) => {

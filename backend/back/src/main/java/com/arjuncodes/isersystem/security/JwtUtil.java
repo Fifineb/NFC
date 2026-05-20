@@ -34,6 +34,9 @@ public class JwtUtil {
     public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
 
     public String extractRole(String token) {
         return extractAllClaims(token).get("role", String.class);

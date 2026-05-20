@@ -1,4 +1,4 @@
-// services/api/stock.js
+
 import api from './axiosConfig';
 
 export const stockService = {

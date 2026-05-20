@@ -1,4 +1,3 @@
-// /src/context/AuthContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -123,6 +122,14 @@ export const AuthProvider = ({ children }) => {
             return { success: false, error: error.message };
         }
     };
+    // context/AuthContext.jsx - Ajouter cette fonction
+const updateUser = (updatedData) => {
+    const updatedUser = { ...user, ...updatedData };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+};
+
+
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -156,6 +163,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
+        updateUser,
         notifications,
         addNotification,
         removeNotification,

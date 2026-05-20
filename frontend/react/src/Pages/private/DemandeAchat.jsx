@@ -1,8 +1,7 @@
-// src/Pages/private/DemandeAchat.jsx
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { demandeAchatApi } from '../../services/api/bonEntreeApi';
-import './DemandeAchat.css';
+import '../../assets/styles/DemandeAchat.css';
 
 const DemandeAchat = () => {
     const { t } = useTranslation();

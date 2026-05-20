@@ -957,6 +957,49 @@ textarea {
   resize: vertical;
 }
 
+/* Support RTL pour l'arabe */
+[dir="rtl"] .sidebar-link {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .sidebar-icon {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .navbar {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .search-box input {
+    text-align: right;
+}
+
+[dir="rtl"] .info-field {
+    text-align: right;
+}
+
+[dir="rtl"] .field-label {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .section-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .stats-row {
+    direction: rtl;
+}
+
+[dir="rtl"] .lang-dropdown {
+    right: 0;
+    left: auto;
+}
 
 
 /* BOUTON */

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Sidebar from './Sidebar'
-import Header  from './Header'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header  from '../../composantes/common/Header'
 import {
   BiArrowBack, BiPlus, BiTrash, BiEdit, BiSave,
   BiX, BiPackage, BiCalendar, BiChevronDown, BiChevronUp
