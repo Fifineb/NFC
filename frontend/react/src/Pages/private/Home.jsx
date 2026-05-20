@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+import Sidebar from '../../composantes/common/Sidebar'
 import Dashboard from './Dashboard'
-import Header from './Header'
+import Header from '../../composantes/common/Header'
 import Calendar from './Calendar'
 import TodoList from './TodoList'
 import '../../assets/styles/main.css'
@@ -26,4 +26,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

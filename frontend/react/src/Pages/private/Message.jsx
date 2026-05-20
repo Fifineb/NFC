@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from './Sidebar'
-import Header from './Header'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header from '../../composantes/common/Header'
 import '../../assets/styles/main.css'
 import '../../assets/styles/fields.css'
 

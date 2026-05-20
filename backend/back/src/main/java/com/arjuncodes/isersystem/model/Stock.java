@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "stock")
 public class Stock {
@@ -24,10 +27,12 @@ public class Stock {
     private LocalDateTime dateMiseAJour;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "magasin_id")
     private Magasin magasin;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "matiere_id")
     private MatierePremiere matierePremiere;
 

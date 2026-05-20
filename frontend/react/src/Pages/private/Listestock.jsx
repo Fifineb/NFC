@@ -1,3 +1,10 @@
+
+import React from 'react'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header from '../../composantes/common/Header'
+import '../../assets/styles/main.css'
+import Stock from './Stock'
+
 import React, { useState, useMemo } from 'react'
 import Sidebar from './Sidebar'
 import Header  from './Header'
@@ -261,6 +268,7 @@ const ListeStock = () => {
       onUpdateSeuil={updateSeuil}
     />
   )
+>>>>>>> baab274c28a9a17887d0bc99590b9c5164623b83
 
   return (
     <div className="app-wrapper">
@@ -337,4 +345,4 @@ const ListeStock = () => {
   )
 }
 
-export default ListeStock
+export default Listestock

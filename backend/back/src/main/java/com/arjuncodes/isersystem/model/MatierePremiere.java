@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 @Table(name = "matiere_premiere")
 public class MatierePremiere {
@@ -40,7 +42,8 @@ public class MatierePremiere {
     private boolean actif;
 
     @OneToMany(mappedBy = "matierePremiere", cascade = CascadeType.ALL)
-    private List<Stock> stocks = new ArrayList<>();
+    @JsonIgnore
+    private List<Stock> stocks ;
 
     @ManyToMany
     @JoinTable(
@@ -51,9 +54,11 @@ public class MatierePremiere {
     private List<Categorie> categories = new ArrayList<>();
 
     @OneToMany(mappedBy = "matierePremiere", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Alerte> alertes = new ArrayList<>();
 
     @OneToMany(mappedBy = "matierePremiere", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Commande> commandes = new ArrayList<>();
 
     public MatierePremiere() {}

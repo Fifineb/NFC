@@ -1,8 +1,8 @@
 package com.arjuncodes.isersystem.model;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "magasin")
@@ -24,7 +24,8 @@ public class Magasin {
     private Region region;
 
     @OneToMany(mappedBy = "magasin", cascade = CascadeType.ALL)
-    private List<Stock> stocks = new ArrayList<>();
+    @JsonIgnore
+    private List<Stock> stocks ;
 
     public Magasin() {}
 

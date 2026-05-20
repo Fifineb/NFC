@@ -3,7 +3,6 @@ import { useAuth } from '../../context/AuthContext';
 import { produitApi } from '../../services/api/produitApi';
 import { mouvementApi } from '../../services/api/mouvementApi';
 
-
 const AdminDashboard = () => {
     const { user } = useAuth();
     const [stats, setStats] = useState({
