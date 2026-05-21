@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
-import Sidebar from './Sidebar'
-import Header  from './Header'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header  from '../../composantes/common/Header'
 import {
   BiError, BiInfoCircle, BiCheckCircle, BiTrash,
   BiFilter, BiSearch, BiRefresh, BiBell, BiTime

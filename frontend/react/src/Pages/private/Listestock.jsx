@@ -1,13 +1,6 @@
-
-import React from 'react'
-import Sidebar from '../../composantes/common/Sidebar'
-import Header from '../../composantes/common/Header'
-import '../../assets/styles/main.css'
-import Stock from './Stock'
-
 import React, { useState, useMemo } from 'react'
-import Sidebar from './Sidebar'
-import Header  from './Header'
+import Sidebar from '../../composantes/common/Sidebar'
+import Header  from '../../composantes/common/Header'
 import StockDetail from './StockDetail'
 import { BiSearch, BiSortAlt2, BiChevronDown, BiChevronUp,
          BiPackage, BiError, BiInfoCircle, BiShow, BiEdit, BiCheck, BiX } from 'react-icons/bi'
@@ -231,7 +224,7 @@ const ProduitCard = ({ produit, unite, onVoir, onUpdateSeuil }) => {
 
 
 // ── Page principale ───────────────────────────────────────────────
-const ListeStock = () => {
+const Listestock = () => {
   const [produits, setProduits] = useState(produitsInit)
   const [search,   setSearch]   = useState('')
   const [sortAsc,  setSortAsc]  = useState(true)
@@ -268,7 +261,7 @@ const ListeStock = () => {
       onUpdateSeuil={updateSeuil}
     />
   )
->>>>>>> baab274c28a9a17887d0bc99590b9c5164623b83
+
 
   return (
     <div className="app-wrapper">
