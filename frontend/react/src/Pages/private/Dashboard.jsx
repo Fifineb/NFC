@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Pages/private/Dashboard.jsx
 import { useAuth } from '../../context/AuthContext';
 import PrivateLayout from '../../composantes/layout/PrivateLayout';
@@ -29,7 +28,7 @@ const Dashboard = () => {
         </PrivateLayout>
     );
 };
-=======
+
 import React, { useState } from 'react'
 import {
   BiUser, BiMapPin, BiUserCheck, BiEnvelope,
@@ -38,18 +37,6 @@ import {
 } from 'react-icons/bi'
 import '../../assets/styles/dashboard.css'
 
-
-const user = {
-  firstName: 'Oussama',
-  lastName:  'Herhar',
-  email:     'oussama.hararhar@gmail.com',
-  phone:     '+213 557 123 456',
-  role:      'Administrateur',
-  unite:     'Alger',
-  statut:    'Actif',
-  since:     'Janvier 2023',
-  avatar:    'OH',
-}
 
 const typeColors = {
   'Actif':     { bg: '#e6f4ea', color: '#1b5e20' },
@@ -82,7 +69,10 @@ const Dashboard = () => {
       <div className="banner">
 
         <div className="banner-content">
-          <div className="banner-avatar">{user.avatar}</div>
+          <div className="banner-avatar">
+             {user.firstName?.charAt(0).toUpperCase()}
+             {user.lastName?.charAt(0).toUpperCase()}
+           </div>
 
           <div className="banner-info">
             <h1 className="banner-name">
@@ -135,7 +125,6 @@ const Dashboard = () => {
             <BiEdit /> {editMode ? 'Annuler' : 'Modifier'}
           </button>
         </div>
->>>>>>> baab274c28a9a17887d0bc99590b9c5164623b83
 
         <div className="info-grid">
           {[
