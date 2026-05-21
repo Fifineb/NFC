@@ -25,6 +25,7 @@ const Sidebar = () => {
             { path: "/mouvements", label: "Mouvements", icon: <BiTask />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'MAGASINIER', 'SUPERVISEUR'] },
             { path: "/profile", label: "Profil", icon: <BiUser />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'MAGASINIER', 'SUPERVISEUR'] },
         ];
+        
 
         // Items spécifiques ADMIN
         const adminItems = [

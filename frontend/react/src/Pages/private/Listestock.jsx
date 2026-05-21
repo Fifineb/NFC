@@ -183,46 +183,52 @@ const Listestock = () => {
     const [catFilter, setCatFilter] = useState('Tous');
 
     // Charger les données depuis l'API
-    const chargerDonnees = async () => {
-        try {
-            setLoading(true);
-            console.log('📡 Chargement des données...');
-            
-            // 1. Charger les matières premières
-            const matieresRes = await api.get('/api/matiere-premiere/getAll');
-            let matieresData = matieresRes.data;
-            if (matieresData && !Array.isArray(matieresData) && matieresData.content) {
-                matieresData = matieresData.content;
-            }
-            
-            // 2. Charger les stocks
-            const stocksRes = await api.get('/api/stock/getAll');
-            let stocksData = stocksRes.data;
-            if (stocksData && !Array.isArray(stocksData) && stocksData.content) {
-                stocksData = stocksData.content;
-            }
-            
-            // 3. Charger les mouvements
-            const mouvementsRes = await api.get('/api/mouvements');
-            let mouvementsData = mouvementsRes.data;
-            if (mouvementsData && !Array.isArray(mouvementsData) && mouvementsData.content) {
-                mouvementsData = mouvementsData.content;
-            }
-            
-            console.log('📦 Matières premières:', matieresData?.length || 0);
-            console.log('📦 Stocks:', stocksData?.length || 0);
-            console.log('📦 Mouvements:', mouvementsData?.length || 0);
-            
-            setMatieres(Array.isArray(matieresData) ? matieresData : []);
-            setStocks(Array.isArray(stocksData) ? stocksData : []);
-            
-        } catch (err) {
-            console.error('❌ Erreur chargement:', err);
-            setError(err.response?.data?.message || err.message);
-        } finally {
+// Pages/private/Listestock.jsx - Partie chargement des données
+const chargerDonnees = async () => {
+    try {
+        setLoading(true);
+        
+        // ✅ Vérifier le token avant l'appel
+        const token = localStorage.getItem('token');
+        console.log('🔑 Token au chargement:', token ? 'Présent' : 'Absent');
+        
+        if (!token) {
+            setError('Session expirée, veuillez vous reconnecter');
             setLoading(false);
+            return;
         }
-    };
+        
+        const response = await api.get('/api/matiere-premiere/getAll');
+        console.log('📦 Réponse brute:', response.data);
+        
+        // Nettoyer les données
+        let data = response.data;
+        if (data && !Array.isArray(data) && data.content) {
+            data = data.content;
+        }
+        
+        const cleanedData = (Array.isArray(data) ? data : []).map(m => ({
+            id: m.id,
+            nom: m.nomPR,
+            description: m.description,
+            seuilMinimal: m.seuilMinimal,
+            uniteMesure: m.uniteMesure,
+            statut: m.statut,
+            actif: m.actif
+        }));
+        
+        console.log('✅ Données nettoyées:', cleanedData);
+        setMatieres(cleanedData);
+        
+    } catch (err) {
+        console.error('❌ Erreur détaillée:', err);
+        console.error('Status:', err.response?.status);
+        console.error('Message:', err.response?.data?.message);
+        setError(err.response?.data?.message || err.message);
+    } finally {
+        setLoading(false);
+    }
+};
 
     useEffect(() => {
         chargerDonnees();
