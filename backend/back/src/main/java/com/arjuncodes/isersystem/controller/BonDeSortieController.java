@@ -39,7 +39,7 @@ public class BonDeSortieController {
             existing.setDestinataire(bon.getDestinataire());
             existing.setDate(bon.getDate());
             existing.setQuantite(bon.getQuantite());
-            existing.setReference_bon(bon.getReference_bon());
+            existing.setReferenceBon(bon.getReferenceBon());
             existing.setObservation(bon.getObservation());
             return repository.save(existing);
         }

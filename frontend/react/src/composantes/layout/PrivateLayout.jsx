@@ -1,5 +1,3 @@
-// composantes/layout/PrivateLayout.jsx
-import Sidebar from '../common/Sidebar';
 import Header from '../common/Header';
 
 const PrivateLayout = ({ children }) => {
@@ -7,7 +5,6 @@ const PrivateLayout = ({ children }) => {
         <div className="private-layout">
             <Header />
             <div className="layout-container">
-                <Sidebar />
                 <main className="main-content">
                     {children}
                 </main>

@@ -21,6 +21,7 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
+    
     public String generateToken(String email, String role) {
         return Jwts.builder()
                 .setSubject(email)
@@ -31,9 +32,20 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String extractEmail(String token) {
+  public String extractEmail(String token) {
+    try {
+        return extractClaim(token, Claims::getSubject);
+    } catch (Exception e) {
+        System.err.println("Erreur extraction email: " + e.getMessage());
+        return null;
+    }
+<<<<<<< HEAD
+=======
+  }
+    public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+>>>>>>> cdb999b (listeproduit)
 
     public String extractRole(String token) {
         return extractAllClaims(token).get("role", String.class);

@@ -63,7 +63,11 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> cdb999b (listeproduit)
             .authorizeHttpRequests(auth -> auth
                 // ================= OPTIONS CORS =================
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -73,6 +77,7 @@ public class SecurityConfig {
                 
                 // ================= AUTHENTIFICATION =================
                 .requestMatchers("/api/auth/**").permitAll()
+<<<<<<< HEAD
                 .requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll()
                 
                 // ================= SWAGGER =================
@@ -125,6 +130,63 @@ public class SecurityConfig {
                 .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
                 
                 // ================= TOUT AUTRE ENDPOINT =================
+=======
+                
+                // ─── 3. H2 / Swagger ────────────────────────────────────────
+                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+
+                // ⚠️ 4. STOCK - TOUS LES RÔLES CONNECTÉS
+                .requestMatchers("/api/stock/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+                
+                // ⚠️ 5. RÉGIONS
+                .requestMatchers(HttpMethod.GET, "/api/region/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+                .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
+
+                // ⚠️ 6. FOURNISSEURS
+                .requestMatchers(HttpMethod.GET, "/api/fournisseur/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR")
+                .requestMatchers("/api/fournisseur/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+
+                // ⚠️ 7. MATIÈRES PREMIÈRES
+                .requestMatchers(HttpMethod.GET, "/api/matiere-premiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+                .requestMatchers(HttpMethod.POST, "/api/matiere-premiere/add").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+                .requestMatchers(HttpMethod.PUT, "/api/matiere-premiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+                .requestMatchers(HttpMethod.DELETE, "/api/matiere-premiere/**").hasRole("ADMINISTRATEUR")
+
+                // ⚠️ 8. BONS
+                .requestMatchers("/api/bon-entree/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
+                .requestMatchers("/api/bon-sortie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
+                .requestMatchers("/api/bon-consommation/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
+                .requestMatchers("/api/commande-achat/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+
+                // ─── 9. Commandes ────────────────────────────────────────────
+                .requestMatchers("/api/commandes/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+
+                // ─── 10. Alertes ─────────────────────────────────────────────
+                .requestMatchers("/api/alerte/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+
+                // ─── 11. Rapports ────────────────────────────────────────────
+                .requestMatchers("/api/rapports/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR")
+
+                // ─── 12. Catégories ──────────────────────────────────────────
+                .requestMatchers(HttpMethod.GET, "/api/categorie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+                .requestMatchers("/api/categorie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+
+                // ─── 13. Magasins ────────────────────────────────────────────
+                .requestMatchers(HttpMethod.GET, "/api/magasin/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR", "MAGASINIER")
+                .requestMatchers("/api/magasin/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
+
+                // ─── 14. Utilisateurs ────────────────────────────────────────
+                .requestMatchers("/api/utilisateurs/me").authenticated()
+                .requestMatchers("/api/utilisateurs/profile").authenticated()
+                .requestMatchers("/api/utilisateurs/change-password").authenticated()
+                .requestMatchers("/api/utilisateurs/**").hasRole("ADMINISTRATEUR")
+
+
+                // ─── 15. Mouvements ────────────────────────────────────────
+.requestMatchers("/api/mouvements").permitAll()
+.requestMatchers("/api/mouvements/**").permitAll()                // ─── 16. Tout le reste ────────────────────────────────────────
+>>>>>>> cdb999b (listeproduit)
                 .anyRequest().authenticated()
             )
             

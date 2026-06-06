@@ -6,8 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "mouvement")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "type_mouvement", discriminatorType = DiscriminatorType.STRING)
-public abstract class Mouvement {
+public class Mouvement {  
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,9 @@ public abstract class Mouvement {
     @Column(name = "observation")
     private String observation;
 
+    @Column(name = "type_mouvement")
+    private String typeMouvement;  // ← AJOUTE CETTE LIGNE
+
     @ManyToOne
     @JoinColumn(name = "stock_id")
     private Stock stock;
@@ -37,10 +39,7 @@ public abstract class Mouvement {
 
     public Mouvement() {}
 
-    // Méthode abstraite — les sous-classes DOIVENT implémenter executer()
-    public abstract void executer();
-
-    // Getters & Setters avec les DEUX noms pour compatibilité controllers
+    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -52,18 +51,22 @@ public abstract class Mouvement {
     public Double getQuantite() { return quantite; }
     public void setQuantite(Double quantite) { this.quantite = quantite; }
 
-    // Alias avec underscore pour les controllers existants
     public String getReferenceBon() { return referenceBon; }
     public void setReferenceBon(String referenceBon) { this.referenceBon = referenceBon; }
-    public String getReference_bon() { return referenceBon; }
-    public void setReference_bon(String referenceBon) { this.referenceBon = referenceBon; }
 
     public String getObservation() { return observation; }
     public void setObservation(String observation) { this.observation = observation; }
+
+    public String getTypeMouvement() { return typeMouvement; }
+    public void setTypeMouvement(String typeMouvement) { this.typeMouvement = typeMouvement; }
 
     public Stock getStock() { return stock; }
     public void setStock(Stock stock) { this.stock = stock; }
 
     public Utilisateur getUtilisateur() { return utilisateur; }
     public void setUtilisateur(Utilisateur utilisateur) { this.utilisateur = utilisateur; }
+
+    public void executer() {
+        throw new UnsupportedOperationException("Unimplemented method 'executer'");
+    }
 }

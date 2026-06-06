@@ -42,6 +42,8 @@ public class MatierePremireController {
         existing.setNom_PR(details.getNom_PR());
         existing.setDescription(details.getDescription());
         existing.setSeuil_minimal(details.getSeuil_minimal());
+        existing.setQuantite(details.getQuantite());  
+
         existing.setUnite_mesure(details.getUnite_mesure());
         existing.setStatut(details.getStatut());
         existing.setActif(details.isActif());

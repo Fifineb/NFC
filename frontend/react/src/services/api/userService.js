@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 // /src/services/api/userService.js
 const API_BASE_URL = 'http://localhost:8081';
+=======
+import api from './axiosConfig';
+>>>>>>> cdb999b (listeproduit)
 
 export const userService = {
     // Connexion
@@ -51,6 +55,7 @@ export const userService = {
         return response.json();
     },
     
+<<<<<<< HEAD
     // Mettre à jour profil
     updateProfile: async (userData) => {
         const response = await fetch(`${API_BASE_URL}/user/updateProfile`, {
@@ -71,6 +76,18 @@ export const userService = {
     },
     
     // Changer mot de passe
+=======
+    //METTRE A JOUR LE PROFIL
+    updateProfile: async (userData) => {
+        console.log('📤 userService.updateProfile appelé avec:', userData);
+        const response = await api.put('/api/utilisateurs/profile', userData);
+        console.log('📥 Réponse reçue:', response);
+        return response.data;
+    },
+    
+
+    // Changer le mot de passe
+>>>>>>> cdb999b (listeproduit)
     changePassword: async (passwordData) => {
         const response = await fetch(`${API_BASE_URL}/user/changePassword`, {
             method: 'POST',

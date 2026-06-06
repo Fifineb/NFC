@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import com.fasterxml.jackson.annotation.*;
 
 @Entity
@@ -25,6 +28,36 @@ public class MatierePremiere {
     @Column(name = "seuil_minimal")
     private Double seuilMinimal;
 
+    @Column(name = "quantite")
+    private Double quantite;
+
+    public MatierePremiere(Long id, String nomPR, String description, Double seuilMinimal, Double quantite,
+            String uniteMesure, LocalDateTime dateCreation, LocalDateTime dateModification, StatutMatiere statut,
+            boolean actif, List<Stock> stocks, List<Categorie> categories, List<Alerte> alertes,
+            List<Commande> commandes) {
+        this.id = id;
+        this.nomPR = nomPR;
+        this.description = description;
+        this.seuilMinimal = seuilMinimal;
+        this.quantite = quantite;
+        this.uniteMesure = uniteMesure;
+        this.dateCreation = dateCreation;
+        this.dateModification = dateModification;
+        this.statut = statut;
+        this.actif = actif;
+        this.stocks = stocks;
+        this.categories = categories;
+        this.alertes = alertes;
+        this.commandes = commandes;
+    }
+
+    public Double getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(Double quantite) {
+        this.quantite = quantite;
+    }
     @Column(name = "unite_mesure")
     private String uniteMesure;
 
@@ -35,6 +68,7 @@ public class MatierePremiere {
     private LocalDateTime dateModification;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "statut")
     private StatutMatiere statut;
 

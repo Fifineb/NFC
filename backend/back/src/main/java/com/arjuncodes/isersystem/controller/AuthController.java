@@ -64,47 +64,50 @@ public ResponseEntity<String> generateHash() {
     String hash = passwordEncoder.encode("oussama123456");
     return ResponseEntity.ok(hash);
 } */
+@PostMapping("/login")
+public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> request) {
 
+    System.out.println(" LOGIN CONTROLLER HIT");
+    
+    Map<String, Object> response = new HashMap<>();
 
+    String email = request.get("email");
+    String password = request.get("motDePasse");  
 
+    System.out.println("EMAIL = " + email);
+    System.out.println("PASSWORD = " + password);
 
-    @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> request) {
+    Utilisateur user = utilisateurService.getUtilisateurByEmail(email);
 
-        Map<String, Object> response = new HashMap<>();
-        String email    = request.get("email");
-        String password = request.get("motDePasse");
-
-        Utilisateur user = utilisateurService.getUtilisateurByEmail(email);
-        if (user == null) {
-            response.put("success", false);
-            response.put("message", "Utilisateur introuvable");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }
-
-        if (!user.isActif()) {
-            response.put("success", false);
-            response.put("message", "Compte désactivé");
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
-        }
-
-        if (!passwordEncoder.matches(password, user.getMotDePasse())) {
-            response.put("success", false);
-            response.put("message", "Mot de passe incorrect");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }
-
-        String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
-
-        response.put("success", true);
-        response.put("token", token);
-        response.put("role", user.getRole());
-        response.put("userId", user.getId());
-        response.put("email", user.getEmail());
-        response.put("nom", user.getNom());
-        response.put("prenom", user.getPrenom());
-        response.put("message", "Connexion réussie");
-
-        return ResponseEntity.ok(response);
+    if (user == null) {
+        response.put("success", false);
+        response.put("message", "Utilisateur introuvable");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
+
+    if (!user.isActif()) {
+        response.put("success", false);
+        response.put("message", "Compte désactivé");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
+
+    if (password == null || !passwordEncoder.matches(password, user.getMotDePasse())) {
+        response.put("success", false);
+        response.put("message", "Mot de passe incorrect");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    String token = jwtUtil.generateToken(user.getEmail(), user.getRole().name());
+
+    response.put("success", true);
+    response.put("token", token);
+    response.put("role", user.getRole());
+    response.put("userId", user.getId());
+    response.put("email", user.getEmail());
+    response.put("nom", user.getNom());
+    response.put("prenom", user.getPrenom());
+
+    return ResponseEntity.ok(response);
+}
+
 }

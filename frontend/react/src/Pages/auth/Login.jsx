@@ -45,6 +45,7 @@ export default function LoginRegister() {
 
       console.log("Résultat login:", result);
 
+<<<<<<< HEAD
       if (result.success) {
         setSuccess("Connexion réussie");
 
@@ -54,6 +55,34 @@ export default function LoginRegister() {
       } else {
         setError(result.error || "Email ou mot de passe incorrect");
       }
+=======
+        if (result.success) {
+            setSuccess("Connexion réussie");
+            
+            //  Redirection selon le rôle
+            const role = result.user?.role;
+            setTimeout(() => {
+                switch(role) {
+                    case 'ADMINISTRATEUR':
+                        navigate('/admin/dashboard');
+                        break;
+                    case 'GESTIONNAIRE':
+                        navigate('/manager/dashboard');
+                        break;
+                    case 'MAGASINIER':
+                        navigate('/stocker/dashboard');
+                        break;
+                    case 'SUPERVISEUR':
+                        navigate('/supervisor/dashboard');
+                        break;
+                    default:
+                        navigate('/dashboard');
+                }
+            }, 1000);
+          } else {
+            setError(result.error || "Email ou mot de passe incorrect");
+        }
+>>>>>>> cdb999b (listeproduit)
     } catch (err) {
       console.error("Erreur login:", err);
       setError("Erreur de connexion au serveur");

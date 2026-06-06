@@ -3,7 +3,6 @@ package com.arjuncodes.isersystem.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "bon_consommation")
 @DiscriminatorValue("BON_CONSOMMATION")
 public class BonDeConsommation extends Mouvement {
 

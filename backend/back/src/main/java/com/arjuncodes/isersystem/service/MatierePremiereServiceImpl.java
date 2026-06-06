@@ -20,10 +20,7 @@ public class MatierePremiereServiceImpl implements MatierePremiereService {
         return matierePremiereRepository.save(matierePremiere);
     }
 
-    @Override
-    public List<MatierePremiere> getAllMatieresPremieres() {
-        return matierePremiereRepository.findAll();
-    }
+
 
     @Override
     public MatierePremiere getMatierePremiereById(Long id) {  // ← Long
@@ -41,4 +38,13 @@ public class MatierePremiereServiceImpl implements MatierePremiereService {
         MatierePremiere matiere = getMatierePremiereById(id);
         return matiere.getStocks();
     }
+    @Override
+public List<MatierePremiere> getAllMatieresPremieres() {
+    List<MatierePremiere> result = matierePremiereRepository.findAll();
+    for (MatierePremiere m : result) {
+        System.out.println("🔍 Produit: " + m.getNomPR() + " | Quantité: " + m.getQuantite());
+    }
+    return result;
+}
+
 }

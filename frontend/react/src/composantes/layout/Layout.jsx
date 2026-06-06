@@ -3,6 +3,10 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 
+<<<<<<< HEAD
+=======
+import Sidebar from '../common/Sidebar';  
+>>>>>>> cdb999b (listeproduit)
 import NotificationBell from '../common/NotificationBell';
 import LanguageSwitcher from '../common/LanguageSwitcher';
 import ThemeSwitcher from '../common/ThemeSwitcher';
@@ -81,6 +85,7 @@ const Layout = ({ children }) => {
     return (
 
         <div className="layout-container">
+<<<<<<< HEAD
 
             {/* SIDEBAR */}
 
@@ -108,6 +113,9 @@ const Layout = ({ children }) => {
                 </nav>
 
             </aside>
+=======
+            <Sidebar />
+>>>>>>> cdb999b (listeproduit)
 
             {/* MAIN */}
 

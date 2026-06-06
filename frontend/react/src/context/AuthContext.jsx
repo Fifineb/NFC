@@ -62,67 +62,99 @@ export const AuthProvider = ({ children }) => {
         const userPermissions = permissions[user.role] || [];
         return userPermissions.includes('*') || userPermissions.includes(permission);
     };
+const login = async (credentials) => {
+    try {
+        console.log('🔐 Tentative de connexion avec:', {
+            email: credentials.email,
+            motDePasse: credentials.password ? '***' : 'missing'
+        });
 
-    const login = async (credentials) => {
-        try {
-            console.log('🔐 Tentative de connexion avec:', {
+        const response = await fetch('http://localhost:8081/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
                 email: credentials.email,
-                password: credentials.password
-            });
+                motDePasse: credentials.password  
+            })
+        });
 
-            const response = await fetch('http://localhost:8081/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: credentials.email,
-                    motDePasse: credentials.password
-                })
-            });
-
-            console.log('📡 Status réponse:', response.status);
-            
-            const data = await response.json();
-            console.log('📦 Données reçues:', data);
-
-            if (!response.ok) {
-                const errorMsg = data.message || data.error || 'Email ou mot de passe incorrect';
-                throw new Error(errorMsg);
+        console.log('📡 Status réponse:', response.status);
+        
+        // Lire la réponse
+        let data = {};
+        const responseText = await response.text();
+        
+        if (responseText) {
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                console.log("Réponse non JSON:", responseText);
             }
-
-            if (data.success && data.token) {
-                const userData = {
-                    id: data.userId,
-                    email: data.email,
-                    nom: data.nom,
-                    prenom: data.prenom,
-                    role: data.role
-                };
-
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(userData));
-                setUser(userData);
-
-                addNotification({
-                    message: `Bienvenue ${data.prenom || data.nom || 'Utilisateur'}`,
-                    type: 'success'
-                });
-
-                return { success: true, user: userData };
-            } else {
-                throw new Error(data.message || 'Connexion échouée');
-            }
-        } catch (error) {
-            console.error('❌ Login API error:', error);
-            addNotification({
-                message: error.message,
-                type: 'error'
-            });
-            return { success: false, error: error.message };
         }
+<<<<<<< HEAD
     };
+=======
+        
+        console.log('📦 Données reçues:', data);
+
+        // Gérer l'erreur 403/401
+        if (!response.ok) {
+            const errorMsg = data.message || data.error || `Erreur ${response.status}`;
+            console.log("❌ Erreur serveur:", errorMsg);
+            return {
+                success: false,
+                error: errorMsg
+            };
+        }
+
+        // Succès
+        if (data.success && data.token) {
+            const userData = {
+                id: data.userId,
+                email: data.email,
+                nom: data.nom,
+                prenom: data.prenom,
+                role: data.role
+            };
+
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(userData));
+            setUser(userData);
+
+            addNotification({
+                message: `Bienvenue ${data.prenom || data.nom || 'Utilisateur'}`,
+                type: 'success'
+            });
+
+            return { success: true, user: userData };
+        } else {
+            return {
+                success: false,
+                error: data.message || 'Connexion échouée'
+            };
+        }
+    } catch (error) {
+        console.error('❌ Login API error:', error);
+        addNotification({
+            message: error.message || 'Erreur de connexion',
+            type: 'error'
+        });
+        return { success: false, error: error.message || 'Erreur réseau' };
+    }
+};
+
+
+const updateUser = (updatedData) => {
+    const updatedUser = { ...user, ...updatedData };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+};
+
+
+>>>>>>> cdb999b (listeproduit)
 
     const logout = () => {
         localStorage.removeItem('token');

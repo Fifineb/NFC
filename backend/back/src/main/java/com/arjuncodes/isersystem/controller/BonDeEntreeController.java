@@ -38,7 +38,7 @@ public class BonDeEntreeController {
             existing.setPrixUnitaireAchat(bon.getPrixUnitaireAchat());
             existing.setDate(bon.getDate());
             existing.setQuantite(bon.getQuantite());
-            existing.setReference_bon(bon.getReference_bon());
+            existing.setReferenceBon(bon.getReferenceBon());
             existing.setObservation(bon.getObservation());
             return repository.save(existing);
         }

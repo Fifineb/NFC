@@ -20,20 +20,40 @@ const Sidebar = () => {
           {open && "Home"}
         </Link>
 
+<<<<<<< HEAD
         <Link to="/mouvements" className="item">
           <BiTask className='icon'/> 
           {open && "Mouvements"}
         </Link>
+=======
+        // Items spécifiques ADMIN
+        const adminItems = [
+            { path: "/produits", label: "Produits", icon: <BiPackage />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE'] },
+            { path: "/fournisseurs", label: "Fournisseurs", icon: <BiStore />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE'] },
+            { path: "/regions", label: "Régions", icon: <BiMap />, roles: ['ADMINISTRATEUR'] },
+            { path: "/rapports", label: "Rapports", icon: <BiSolidReport />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'SUPERVISEUR'] },
+            { path: "/notifications", label: "Notification", icon: <BiSolidReport />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'SUPERVISEUR'] },
+
+        ];
+>>>>>>> cdb999b (listeproduit)
 
         <Link to="/listeStock" className="item">
           <BiBookAlt className='icon'/> 
           {open && "Stock"}
         </Link>
 
+<<<<<<< HEAD
         <Link to="/message" className="item">
           <BiMessage className='icon'/> 
           {open && "Messages"}
         </Link>
+=======
+        // Items spécifiques MAGASINIER
+        const stockerItems = [
+            { path: "/bon-entree", label: "Bon Entrée", icon: <BiTask />, roles: ['MAGASINIER'] },
+            { path: "/produits", label: "Produits", icon: <BiPackage />, roles: ['MAGASINIER'] },
+        ];
+>>>>>>> cdb999b (listeproduit)
 
         <Link to="/adduser" className="item">
           <BiUserPlus className='icon'/> 
