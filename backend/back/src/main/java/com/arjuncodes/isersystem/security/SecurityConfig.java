@@ -63,11 +63,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> cdb999b (listeproduit)
             .authorizeHttpRequests(auth -> auth
                 // ================= OPTIONS CORS =================
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -77,7 +73,7 @@ public class SecurityConfig {
                 
                 // ================= AUTHENTIFICATION =================
                 .requestMatchers("/api/auth/**").permitAll()
-<<<<<<< HEAD
+
                 .requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll()
                 
                 // ================= SWAGGER =================
@@ -130,7 +126,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
                 
                 // ================= TOUT AUTRE ENDPOINT =================
-=======
+
                 
                 // ─── 3. H2 / Swagger ────────────────────────────────────────
                 .requestMatchers("/h2-console/**").permitAll()
@@ -185,8 +181,9 @@ public class SecurityConfig {
 
                 // ─── 15. Mouvements ────────────────────────────────────────
 .requestMatchers("/api/mouvements").permitAll()
-.requestMatchers("/api/mouvements/**").permitAll()                // ─── 16. Tout le reste ────────────────────────────────────────
->>>>>>> cdb999b (listeproduit)
+.requestMatchers("/api/mouvements/**").permitAll()               
+ // ─── 16. Tout le reste ────────────────────────────────────────
+
                 .anyRequest().authenticated()
             )
             

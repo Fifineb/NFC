@@ -11,17 +11,14 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET =
-            "mysupersecretkeymysupersecretkey123456";
+    private static final String SECRET = "mysupersecretkeymysupersecretkey123456";
 
-    private static final long EXPIRATION =
-            1000 * 60 * 60 * 24;
+    private static final long EXPIRATION = 1000 * 60 * 60 * 24;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    
     public String generateToken(String email, String role) {
         return Jwts.builder()
                 .setSubject(email)
@@ -32,23 +29,22 @@ public class JwtUtil {
                 .compact();
     }
 
-  public String extractEmail(String token) {
-    try {
-        return extractClaim(token, Claims::getSubject);
-    } catch (Exception e) {
-        System.err.println("Erreur extraction email: " + e.getMessage());
-        return null;
+    public String extractEmail(String token) {
+        try {
+            return extractClaim(token, Claims::getSubject);
+        } catch (Exception e) {
+            System.err.println("Erreur extraction email: " + e.getMessage());
+            return null;
+        }
     }
-<<<<<<< HEAD
-=======
-  }
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
->>>>>>> cdb999b (listeproduit)
 
     public String extractRole(String token) {
-        return extractAllClaims(token).get("role", String.class);
+        try {
+            return extractAllClaims(token).get("role", String.class);
+        } catch (Exception e) {
+            System.err.println("Erreur extraction role: " + e.getMessage());
+            return null;
+        }
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> resolver) {
@@ -73,9 +69,8 @@ public class JwtUtil {
         } catch (MalformedJwtException e) {
             System.out.println("Token invalide");
         } catch (Exception e) {
-            System.out.println("Token erreur");
+            System.out.println("Token erreur: " + e.getMessage());
         }
-
         return false;
     }
 }

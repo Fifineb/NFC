@@ -3,11 +3,15 @@ package com.arjuncodes.isersystem.controller;
 import com.arjuncodes.isersystem.model.Role;
 import com.arjuncodes.isersystem.model.Utilisateur;
 import com.arjuncodes.isersystem.service.UtilisateurService;
+import com.arjuncodes.isersystem.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +28,8 @@ public class UtilisateurController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> create(@RequestBody Utilisateur utilisateur) {
@@ -73,7 +79,6 @@ public class UtilisateurController {
                                                       @RequestBody Utilisateur details) {
 
         Map<String, Object> response = new HashMap<>();
-
 
         if (details.getMotDePasse() != null && !details.getMotDePasse().isEmpty()) {
             details.setMotDePasse(passwordEncoder.encode(details.getMotDePasse()));
@@ -130,7 +135,6 @@ public class UtilisateurController {
         return ResponseEntity.ok(response);
     }
 
-    // ✅ NOUVEAU ENDPOINT - Récupérer l'utilisateur connecté
     @GetMapping("/me")
     public ResponseEntity<Map<String, Object>> getCurrentUser(@AuthenticationPrincipal String email) {
         Map<String, Object> response = new HashMap<>();
@@ -143,7 +147,6 @@ public class UtilisateurController {
             response.put("nom", user.getNom());
             response.put("prenom", user.getPrenom());
             response.put("role", user.getRole());
-            response.put("telephone", user.getTelephone());
             response.put("actif", user.isActif());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -153,8 +156,7 @@ public class UtilisateurController {
         }
     }
 
-    //  Mettre à jour le profil
-@PutMapping("/profile")
+    @PutMapping("/profile")
     public ResponseEntity<Map<String, Object>> updateProfile(@RequestBody Map<String, String> updates,
                                                               HttpServletRequest request) {
         Map<String, Object> response = new HashMap<>();
@@ -168,8 +170,6 @@ public class UtilisateurController {
             }
             
             String token = authHeader.substring(7);
-            
-            // ✅ Appel sur l'instance injectée (pas statique)
             String email = jwtUtil.extractEmail(token);
             
             System.out.println("📧 Email récupéré: " + email);
@@ -182,7 +182,6 @@ public class UtilisateurController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
             
-            // Mise à jour des champs
             if (updates.containsKey("nom")) {
                 user.setNom(updates.get("nom"));
             }
@@ -191,9 +190,6 @@ public class UtilisateurController {
             }
             if (updates.containsKey("email")) {
                 user.setEmail(updates.get("email"));
-            }
-            if (updates.containsKey("telephone")) {
-                user.setTelephone(updates.get("telephone"));
             }
             
             utilisateurService.saveUtilisateur(user);
@@ -205,7 +201,6 @@ public class UtilisateurController {
                 "nom", user.getNom(),
                 "prenom", user.getPrenom(),
                 "email", user.getEmail(),
-                "telephone", user.getTelephone(),
                 "role", user.getRole()
             ));
             
@@ -218,7 +213,7 @@ public class UtilisateurController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
-        // Changer le mot de passe
+
     @PutMapping("/change-password")
     public ResponseEntity<Map<String, Object>> changePassword(@RequestBody Map<String, String> passwords, 
                                                                @AuthenticationPrincipal String email) {

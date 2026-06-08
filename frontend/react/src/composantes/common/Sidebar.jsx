@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BiHome, BiMessage, BiSolidReport, BiStats, BiTask, BiBookAlt, BiMenu, BiUserPlus, BiStore } from 'react-icons/bi'
+import { BiHome, BiMessage, BiSolidReport, BiStats, BiTask, BiBookAlt, BiMenu, BiUserPlus, BiStore, BiPackage, BiMap } from 'react-icons/bi'
 import '../../assets/styles/menu.css'
 
 const Sidebar = () => {
@@ -20,40 +20,10 @@ const Sidebar = () => {
           {open && "Home"}
         </Link>
 
-<<<<<<< HEAD
-        <Link to="/mouvements" className="item">
-          <BiTask className='icon'/> 
-          {open && "Mouvements"}
-        </Link>
-=======
-        // Items spécifiques ADMIN
-        const adminItems = [
-            { path: "/produits", label: "Produits", icon: <BiPackage />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE'] },
-            { path: "/fournisseurs", label: "Fournisseurs", icon: <BiStore />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE'] },
-            { path: "/regions", label: "Régions", icon: <BiMap />, roles: ['ADMINISTRATEUR'] },
-            { path: "/rapports", label: "Rapports", icon: <BiSolidReport />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'SUPERVISEUR'] },
-            { path: "/notifications", label: "Notification", icon: <BiSolidReport />, roles: ['ADMINISTRATEUR', 'GESTIONNAIRE', 'SUPERVISEUR'] },
-
-        ];
->>>>>>> cdb999b (listeproduit)
-
         <Link to="/listeStock" className="item">
           <BiBookAlt className='icon'/> 
           {open && "Stock"}
         </Link>
-
-<<<<<<< HEAD
-        <Link to="/message" className="item">
-          <BiMessage className='icon'/> 
-          {open && "Messages"}
-        </Link>
-=======
-        // Items spécifiques MAGASINIER
-        const stockerItems = [
-            { path: "/bon-entree", label: "Bon Entrée", icon: <BiTask />, roles: ['MAGASINIER'] },
-            { path: "/produits", label: "Produits", icon: <BiPackage />, roles: ['MAGASINIER'] },
-        ];
->>>>>>> cdb999b (listeproduit)
 
         <Link to="/adduser" className="item">
           <BiUserPlus className='icon'/> 
@@ -74,11 +44,39 @@ const Sidebar = () => {
           <BiStats className='icon'/> 
           {open && "Statistics"}
         </Link>
-      </div>
-      
 
+        <Link to="/produits" className="item">
+          <BiPackage className='icon'/> 
+          {open && "Produits"}
+        </Link>
+
+        <Link to="/regions" className="item">
+          <BiMap className='icon'/> 
+          {open && "Régions"}
+        </Link>
+
+        <Link to="/message" className="item">
+          <BiMessage className='icon'/> 
+          {open && "Messages"}
+        </Link>
+
+        <Link to="/mouvements" className="item">
+          <BiTask className='icon'/> 
+          {open && "Mouvements"}
+        </Link>
+
+        <Link to="/bon-entree" className="item">
+          <BiTask className='icon'/> 
+          {open && "Bon Entrée"}
+        </Link>
+
+        <Link to="/notifications" className="item">
+          <BiSolidReport className='icon'/> 
+          {open && "Notification"}
+        </Link>
+      </div>
     </div>
   )
 }
 
-export default Sidebar;
+export default Sidebar
