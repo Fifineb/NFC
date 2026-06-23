@@ -1,0 +1,18 @@
+export const permissions = {
+ ADMINISTRATEUR: [
+   "MANAGE_USERS",
+   "VIEW_REPORTS"
+ ],
+
+ GESTIONNAIRE: [
+   "MANAGE_STOCK"
+ ],
+
+ SUPERVISEUR: [
+   "VIEW_REPORTS"
+ ],
+
+ MAGASINIER: [
+   "CREATE_MOVEMENT"
+ ]
+}

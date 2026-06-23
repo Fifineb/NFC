@@ -25,12 +25,12 @@ export default function LoginRegister() {
   const navigate = useNavigate();
 
   // ================= LOGIN =================
-  const handleLogin = async (e) => {
+const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !motDePasse) {
-      setError("Veuillez remplir tous les champs");
-      return;
+        setError("Veuillez remplir tous les champs");
+        return;
     }
 
     setLoading(true);
@@ -38,24 +38,13 @@ export default function LoginRegister() {
     setSuccess("");
 
     try {
-      const result = await login({
-        email,
-        password: motDePasse,
-      });
+        const result = await login({
+            email,
+            password: motDePasse,
+        });
 
-      console.log("Résultat login:", result);
+        console.log("Résultat login:", result);
 
-<<<<<<< HEAD
-      if (result.success) {
-        setSuccess("Connexion réussie");
-
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-      } else {
-        setError(result.error || "Email ou mot de passe incorrect");
-      }
-=======
         if (result.success) {
             setSuccess("Connexion réussie");
             
@@ -82,14 +71,13 @@ export default function LoginRegister() {
           } else {
             setError(result.error || "Email ou mot de passe incorrect");
         }
->>>>>>> cdb999b (listeproduit)
     } catch (err) {
-      console.error("Erreur login:", err);
-      setError("Erreur de connexion au serveur");
+        console.error("Erreur login:", err);
+        setError("Erreur de connexion au serveur");
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   // ================= REGISTER =================
   const handleRegister = async (e) => {

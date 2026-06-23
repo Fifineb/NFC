@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "categorie")
 public class Categorie {
@@ -20,6 +22,7 @@ public class Categorie {
     private String description;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private List<MatierePremiere> matieresPremieres = new ArrayList<>();
 
     public Categorie() {}

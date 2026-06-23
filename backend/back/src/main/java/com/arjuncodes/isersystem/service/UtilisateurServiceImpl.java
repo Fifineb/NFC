@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.Collections;
 @Service
-public class UtilisateurServiceImpl implements UtilisateurService {
+public class UtilisateurServiceImpl implements UtilisateurService{
 
     @Autowired
     private UtilisateurRepository utilisateurRepository;
@@ -110,4 +114,30 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setMotDePasse(passwordEncoder.encode(nouveauMotDePasse));
         return utilisateurRepository.save(utilisateur);
     }
+    
+
+
+   @Override
+public UserDetails loadUserByUsername(String email)
+        throws UsernameNotFoundException {
+
+    Utilisateur utilisateur = utilisateurRepository
+            .findByEmail(email)
+            .orElseThrow(() ->
+                    new UsernameNotFoundException(
+                            "Utilisateur introuvable"
+                    ));
+
+    return new org.springframework.security.core.userdetails.User(
+            utilisateur.getEmail(),
+            utilisateur.getMotDePasse(),
+            Collections.singletonList(
+                    new SimpleGrantedAuthority(
+                            "ROLE_" + utilisateur.getRole()
+                    )
+            )
+    );
+}
+
+
 }

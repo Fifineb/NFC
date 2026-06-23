@@ -3,9 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const languages = [
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'ar', name: 'العربية', flag: '🇩🇿' }
+    { code: 'fr', name: 'Français', flag: '🇫🇷', dir: 'ltr' },
+    { code: 'en', name: 'English', flag: '🇬🇧', dir: 'ltr' },
+    { code: 'ar', name: 'العربية', flag: '🇩🇿', dir: 'rtl' }
 ];
 
 const LanguageSwitcher = () => {
@@ -25,10 +25,19 @@ const LanguageSwitcher = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const changeLanguage = (code) => {
+    const changeLanguage = (code, dir) => {
         i18n.changeLanguage(code);
         localStorage.setItem('language', code);
+        document.documentElement.dir = dir;
+        document.documentElement.lang = code;
         setIsOpen(false);
+        
+        // Recharger la page pour appliquer RTL correctement
+        if (dir === 'rtl') {
+            document.body.style.direction = 'rtl';
+        } else {
+            document.body.style.direction = 'ltr';
+        }
     };
 
     return (
@@ -47,12 +56,12 @@ const LanguageSwitcher = () => {
                     {languages.map(lang => (
                         <button
                             key={lang.code}
-                            onClick={() => changeLanguage(lang.code)}
+                            onClick={() => changeLanguage(lang.code, lang.dir)}
                             className={`lang-option ${i18n.language === lang.code ? 'active' : ''}`}
                         >
-                            <span>{lang.flag}</span>
-                            <span>{lang.name}</span>
-                            {i18n.language === lang.code && <span>✓</span>}
+                            <span className="lang-option-flag">{lang.flag}</span>
+                            <span className="lang-option-name">{lang.name}</span>
+                            {i18n.language === lang.code && <span className="lang-check">✓</span>}
                         </button>
                     ))}
                 </div>

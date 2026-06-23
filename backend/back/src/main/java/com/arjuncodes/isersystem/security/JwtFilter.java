@@ -1,3 +1,4 @@
+// security/JwtFilter.java — VERSION CORRIGÉE
 package com.arjuncodes.isersystem.security;
 
 import jakarta.servlet.FilterChain;
@@ -7,12 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Collections;
-
+import java.util.List;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -26,11 +27,11 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain)
-            throws IOException, ServletException {
+            throws ServletException, IOException {
 
-        String path = request.getServletPath();
-
-        // Laisser passer les endpoints d'authentification
+        String path = request.getRequestURI();
+        
+        // ✅ CRUCIAL : Ne PAS bloquer les endpoints d'authentification
         if (path.startsWith("/api/auth/")) {
             System.out.println("🔓 Auth endpoint - bypass JWT: " + path);
             chain.doFilter(request, response);
@@ -45,34 +46,36 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
+        // Pas de token → pas d'authentification
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             System.out.println("⚠️ Pas de token pour: " + path);
-            chain.doFilter(request, response);
+            chain.doFilter(request, response);  // Laisse passer, SecurityConfig décidera
             return;
         }
 
         String token = authHeader.substring(7);
 
-        if (!jwtUtil.validateToken(token)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write("{\"success\":false,\"message\":\"Token invalide ou expiré\"}");
-            return;
-        }
+        try {
+            String email = jwtUtil.extractEmail(token);
+            String role = jwtUtil.extractRole(token);
 
-        String email = jwtUtil.extractEmail(token);
-        String role = jwtUtil.extractRole(token);
+            if (email != null && role != null && jwtUtil.validateToken(token)) {
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
 
-        if (email != null && role != null) {
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(email, null, List.of(authority));
 
-            UsernamePasswordAuthenticationToken authToken =
-                    new UsernamePasswordAuthenticationToken(email, null, Collections.singletonList(authority));
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authToken);
 
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-            System.out.println("✅ JWT OK - email: " + email + " | role: ROLE_" + role);
+                System.out.println("✅ JWT OK - email: " + email + " | role: ROLE_" + role);
+            }
+        } catch (Exception e) {
+            SecurityContextHolder.clearContext();
+            System.err.println("❌ JWT invalide : " + e.getMessage());
         }
 
         chain.doFilter(request, response);
     }
+
 }

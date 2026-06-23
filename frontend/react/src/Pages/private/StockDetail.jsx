@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { BiArrowBack, BiPlus, BiTrash, BiEdit, BiSave,
-  BiX, BiPackage, BiCalendar, BiChevronDown, BiChevronUp, BiCheck
-} from 'react-icons/bi'
 import Sidebar from '../../composantes/common/Sidebar'
 import Header  from '../../composantes/common/Header'
+import {
+  BiArrowBack, BiPlus, BiTrash, BiEdit, BiSave,
+  BiX, BiPackage, BiCalendar, BiChevronDown, BiChevronUp
+} from 'react-icons/bi'
 import '../../assets/styles/listestock.css'
 
 const calcStock = (s) => s.initial + s.entrees - s.sorties

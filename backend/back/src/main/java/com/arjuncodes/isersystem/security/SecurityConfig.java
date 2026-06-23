@@ -28,34 +28,31 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
-    // ================= PASSWORD =================
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // ================= AUTH MANAGER =================
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // ================= CORS =================
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:5173"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setAllowCredentials(true);
-        
+        configuration.setMaxAge(3600L);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
-    // ================= SECURITY =================
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -65,68 +62,12 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
             .authorizeHttpRequests(auth -> auth
-                // ================= OPTIONS CORS =================
+
+                // ─── 1. OPTIONS (pre-flight CORS) ───────────────────────────
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                
-                // ================= PUBLIC =================
-                .requestMatchers("/", "/h2-console/**").permitAll()
-                
-                // ================= AUTHENTIFICATION =================
+
+                // ─── 2. Auth publique ────────────────────────────────────────
                 .requestMatchers("/api/auth/**").permitAll()
-
-                .requestMatchers(HttpMethod.GET, "/api/auth/**").permitAll()
-                
-                // ================= SWAGGER =================
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                
-                // ================= FOURNISSEURS =================
-                .requestMatchers("/api/fournisseur/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
-                
-                // ================= MATIÈRES PREMIÈRES / PRODUITS =================
-                .requestMatchers("/api/matiere-premiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                .requestMatchers("/api/produits/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                .requestMatchers("/matiere/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                
-                // ================= STOCK =================
-                .requestMatchers("/api/stock/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/stock/augmenter/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/stock/diminuer/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                
-                // ================= BONS =================
-                .requestMatchers("/api/bon-entree/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/bon-sortie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                .requestMatchers("/api/bon-consommation/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER")
-                
-                // ================= COMMANDES =================
-                .requestMatchers("/api/commandes/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
-                
-                // ================= MOUVEMENTS =================
-                .requestMatchers("/api/mouvements/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "MAGASINIER", "SUPERVISEUR")
-                
-                // ================= ALERTES =================
-                .requestMatchers("/api/alerte/**").hasAnyRole("ADMINISTRATEUR", "SUPERVISEUR")
-                
-                // ================= RAPPORTS =================
-                .requestMatchers("/api/rapports/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE", "SUPERVISEUR")
-                
-                // ================= RÉGIONS =================
-                .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
-                
-                // ================= UTILISATEURS =================
-                .requestMatchers("/api/utilisateurs/**").hasRole("ADMINISTRATEUR")
-                .requestMatchers("/api/utilisateurs/me").authenticated()
-                
-                // ================= CATÉGORIES =================
-                .requestMatchers("/api/categorie/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
-                
-                // ================= MAGASINS =================
-                .requestMatchers("/api/magasin/**").hasAnyRole("ADMINISTRATEUR", "GESTIONNAIRE")
-                
-                // ================= RÉGIONS =================
-                .requestMatchers("/api/region/**").hasRole("ADMINISTRATEUR")
-                
-                // ================= TOUT AUTRE ENDPOINT =================
-
                 
                 // ─── 3. H2 / Swagger ────────────────────────────────────────
                 .requestMatchers("/h2-console/**").permitAll()
@@ -181,12 +122,10 @@ public class SecurityConfig {
 
                 // ─── 15. Mouvements ────────────────────────────────────────
 .requestMatchers("/api/mouvements").permitAll()
-.requestMatchers("/api/mouvements/**").permitAll()               
- // ─── 16. Tout le reste ────────────────────────────────────────
-
+.requestMatchers("/api/mouvements/**").permitAll()                // ─── 16. Tout le reste ────────────────────────────────────────
                 .anyRequest().authenticated()
             )
-            
+
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

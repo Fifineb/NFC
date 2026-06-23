@@ -1,4 +1,3 @@
-// /src/context/AuthContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -94,9 +93,6 @@ const login = async (credentials) => {
                 console.log("Réponse non JSON:", responseText);
             }
         }
-<<<<<<< HEAD
-    };
-=======
         
         console.log('📦 Données reçues:', data);
 
@@ -154,7 +150,6 @@ const updateUser = (updatedData) => {
 };
 
 
->>>>>>> cdb999b (listeproduit)
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -188,6 +183,7 @@ const updateUser = (updatedData) => {
         loading,
         login,
         logout,
+        updateUser,
         notifications,
         addNotification,
         removeNotification,

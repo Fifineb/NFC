@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react'
-import Sidebar from '../../composantes/common/Sidebar'
 import Header  from '../../composantes/common/Header'
 import {
   BiError, BiInfoCircle, BiCheckCircle, BiTrash,
@@ -173,7 +172,7 @@ const Notifications = () => {
 
   return (
     <div className="app-wrapper">
-      <Sidebar />
+     
       <div className="Home">
         <Header />
         <div className="content-row">
